@@ -13,11 +13,9 @@
     <div class="container py-5">
         <header>
             <div class="d-flex justify-content-center">
-                <h1>Ciao Classe 110</h1>
+                <h1>Progetto team 5</h1>
             </div>
         </header>
-
-        <img src="{{ Vite::asset('resources/img/duck.jpg') }}" alt="">
     </div>
 
 </body>
