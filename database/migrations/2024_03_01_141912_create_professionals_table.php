@@ -15,10 +15,15 @@ return new class extends Migration
             $table->id();
 
             $table->string('slug',61);
-
+            $table->string('curriculum')->nullable();
+            $table->string('photo')->nullable();
+            $table->text('performance')->nullable();
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }
+
+   
 
     /**
      * Reverse the migrations.
