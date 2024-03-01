@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('professionals', function (Blueprint $table) {
             $table->id();
 
-            
+            //prova
 
             $table->timestamps();
         });
