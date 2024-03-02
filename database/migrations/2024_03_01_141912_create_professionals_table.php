@@ -14,16 +14,17 @@ return new class extends Migration
         Schema::create('professionals', function (Blueprint $table) {
             $table->id();
 
-            $table->string('slug',61);
+            $table->string('slug', 61);
             $table->string('curriculum')->nullable();
             $table->string('photo')->nullable();
+            $table->string('phone', 20)->nullable();
             $table->text('performance')->nullable();
             $table->string('address')->nullable();
             $table->timestamps();
         });
     }
 
-   
+
 
     /**
      * Reverse the migrations.
