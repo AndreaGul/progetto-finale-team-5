@@ -10,7 +10,28 @@ class Professional extends Model
     use HasFactory;
 
 
-    public function user(){
-        return $this->hasOne(User::class);
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function specializations()
+    {
+        return $this->belongsToMany(Specialization::class);
+    }
+
+    public function sponsorizations()
+    {
+        return $this->belongsToMany(Sponsorization::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class);
     }
 }

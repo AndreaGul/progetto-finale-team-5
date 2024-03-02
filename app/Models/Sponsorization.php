@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Sponsorization extends Model
 {
     use HasFactory;
+
+    public function professionals()
+    {
+        return $this->belongsToMany(Professional::class);
+    }
 }
