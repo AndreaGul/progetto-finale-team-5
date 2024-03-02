@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('professional_specialization', function (Blueprint $table) {
-            $table->unsignedBigInteger('specialization_id');
-            $table->unsignedBigInteger('professional_id');
-            $table->foreign('specialization_id')->references('id')->on('specializations')->cascadeOnDelete();
+        Schema::create('votes', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('professional_id')->nullable();
             $table->foreign('professional_id')->references('id')->on('professionals')->cascadeOnDelete();
-            $table->primary(['professional_id', 'specialization_id']);
+
+            $table->unsignedBigInteger('lookup_id')->nullable();
+            $table->foreign('lookup_id')->references('id')->on('lookup_votes')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('professional_specialization');
+        Schema::dropIfExists('votes');
     }
 };
