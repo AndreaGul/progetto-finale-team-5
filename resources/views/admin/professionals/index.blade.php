@@ -11,12 +11,23 @@
             <li><span class="text-primary-emphasis fw-bolder">Nome : </span>{{ $user->name }}</li>
             <li><span class="text-primary-emphasis fw-bolder">Cognome : </span> {{ $user->surname }}</li>
             <li><span class="text-primary-emphasis fw-bolder">Email : </span> {{ $user->email }}</li>
-            <li>
+            {{-- <li>
                 @if (isset($professional->curriculum))
                     <a class="text-primary-emphasis fw-bolder" target="_blank"
                         href="{{ asset('storage/' . $professional->curriculum) }}">Curriculum vitae</a>
                 @else
                     <span class="text-primary-emphasis fw-bolder">Curriculum: </span> assente
+                @endif
+
+            </li> --}}
+
+
+            <li>
+                @if (isset($professional->curriculum))
+                    <a class="text-primary-emphasis fw-bolder" target="_blank"
+                        href="{{ asset('storage/' . $professional->curriculum) }}">Curriculum vitae</a>
+                @else
+                    <p>Curriculum assente</p>
                 @endif
 
             </li>
