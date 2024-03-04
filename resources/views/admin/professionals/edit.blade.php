@@ -16,7 +16,7 @@
   </div>
 
   <div class="alert alert-warning d-none" id="error-fe" role="alert">
-    Allert Front-End
+    Campi non validi: 
     <p id="error-text"></p>
   </div>
   
