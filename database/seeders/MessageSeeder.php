@@ -16,8 +16,7 @@ class MessageSeeder extends Seeder
     {
         $message = new Message();
 
- 
-       $message->message = 'Ciao';
+        $message->message = 'Ciao';
         $message->sender_email = 'mariorossi@example.com';
         $message->name = 'Mario Rossi';
 
