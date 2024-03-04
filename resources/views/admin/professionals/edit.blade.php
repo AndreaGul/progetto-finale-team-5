@@ -14,8 +14,13 @@
       </div>
       @endif
   </div>
+
+  <div class="alert alert-warning d-none" id="error-fe" role="alert">
+    Allert Front-End
+    <p id="error-text"></p>
+  </div>
   
- <form class="row g-3 my-3" action=" {{route('admin.info.update',$user)}}" method="POST" enctype="multipart/form-data">
+ <form class="row g-3 my-3" action=" {{route('admin.info.update',$user)}}" method="POST" enctype="multipart/form-data" id="form">
   @csrf
 
   @method('PUT')
@@ -63,7 +68,10 @@
   </div>
   
   
-    <button type="submit" class="btn btn-primary">Invia</button>
+    <button type="submit" id="submit" class="btn btn-primary">Invia</button>
   </div>
 </form>
+<!-- Js-->
+@vite(['resources/js/validations.js'])
+<!-- Fine Js-->
 @endsection
