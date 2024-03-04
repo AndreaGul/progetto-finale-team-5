@@ -22,7 +22,6 @@ elementsBigText.push(document.getElementById('performance'));
 
 submit.addEventListener('click', (event) => {
     let authorize = true;
-    let skip = false;
     // Small Text
     elementsText.forEach((element) => {
         if(!required.includes(element.id) && element.value.length === 0){
