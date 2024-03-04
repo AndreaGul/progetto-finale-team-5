@@ -52,8 +52,12 @@ class ProfessionalController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Professional $professional)
-    {
-        //
+    {   $user= User::find(Auth::id());
+      
+        $professional= Professional::where('user_id', Auth::id())->first();
+         
+        return view('admin.professionals.edit',compact('user','professional'));
+
     }
 
     /**
