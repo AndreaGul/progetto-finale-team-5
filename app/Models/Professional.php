@@ -9,6 +9,7 @@ class Professional extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['slug'];
 
     public function user()
     {

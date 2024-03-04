@@ -1,4 +1,5 @@
-const required = ['name', 'surname'];
+const required = ["name", "surname"];
+
 /*
 curriculum
 photo
@@ -9,18 +10,18 @@ const elementsEmail = [];
 const elementsNumber = [];
 const elementsBigText = [];
 
-const alert = document.getElementById('error-fe');
-const errorText = document.getElementById('error-text');
-const form = document.getElementById('form');
-const submit = document.getElementById('submit');
+const alert = document.getElementById("error-fe");
+const errorText = document.getElementById("error-text");
+const form = document.getElementById("form");
+const submit = document.getElementById("submit");
 
-elementsText.push(document.getElementById('name'));
-elementsText.push(document.getElementById('surname'));
-elementsNumber.push(document.getElementById('phone'));
-elementsBigText.push(document.getElementById('address'));
-elementsBigText.push(document.getElementById('performance'));
+elementsText.push(document.getElementById("name"));
+elementsText.push(document.getElementById("surname"));
+elementsNumber.push(document.getElementById("phone"));
+elementsBigText.push(document.getElementById("address"));
+elementsBigText.push(document.getElementById("performance"));
 
-submit.addEventListener('click', (event) => {
+submit.addEventListener("click", (event) => {
     let authorize = true;
     // Small Text
     elementsText.forEach((element) => {
@@ -78,10 +79,10 @@ submit.addEventListener('click', (event) => {
             element.classList.remove('border', 'border-danger');
         }
     });
-    
-    if(authorize !== true){
+
+    if (authorize !== true) {
         event.preventDefault();
-        alert.classList.remove('d-none');
-        errorText.innerText = 'Campi non validi';
+        alert.classList.remove("d-none");
+        errorText.innerText = "Campi non validi";
     }
 });
