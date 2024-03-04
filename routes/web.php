@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\ProfessionalController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -23,11 +24,12 @@ Route::get('/', function () {
 Route::middleware('auth', 'verified')
     ->name('admin.')
     ->prefix('admin')
-    ->group(function () {Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-    })->name('dashboard');
+    ->group(function () {
+        Route::get('/dashboard', function () {
+            return view('admin.dashboard');
+        })->name('dashboard');
         Route::resource('info', ProfessionalController::class);
-
+        Route::resource('messages', MessageController::class);
     });
 
-    require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
