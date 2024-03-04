@@ -10,13 +10,12 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {   
-        Schema::table('professionals', function(Blueprint $table){
-            $table->unsignedBigInteger('user_id')->nullable()->after('id');
+    {
+        Schema::table('professionals', function (Blueprint $table) {
+            $table->unsignedBigInteger('professional_id')->after('id');
 
-            $table->foreign('user_id')->references('id')->on('users')->nullOnDelete();
+            $table->foreign('professional_id')->references('id')->on('professionals')->cascadeOnDelete();
         });
-         
     }
 
     /**
@@ -24,7 +23,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('professionals', function(Blueprint $table){
+        Schema::table('professionals', function (Blueprint $table) {
             $table->dropForeign('professionals_user_id_foreign');
             $table->dropColumn('user_id');
         });

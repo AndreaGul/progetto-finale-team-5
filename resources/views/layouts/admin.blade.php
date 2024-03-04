@@ -62,14 +62,21 @@
                                     href="{{ route('admin.dashboard') }}">
                                     <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Dashboard
                                 </a>
-                                
+
                             </li>
-                             <li class="nav-item">
+                            <li class="nav-item">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'dashboard' ? 'bg-secondary' : '' }}"
                                     href="{{ route('admin.info.index') }}">
                                     <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Info
                                 </a>
-                                
+
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'dashboard' ? 'bg-secondary' : '' }}"
+                                    href="{{ route('admin.messages.index') }}">
+                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Messages
+                                </a>
+
                             </li>
                         </ul>
 

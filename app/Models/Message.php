@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Message extends Model
 {
     use HasFactory;
+
+    public function professional()
+    {
+        return $this->belongsTo(Professional::class);
+    }
 }
