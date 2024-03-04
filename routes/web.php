@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\ProfessionalController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,7 @@ Route::middleware('auth', 'verified')
         })->name('dashboard');
         Route::resource('info', ProfessionalController::class);
         Route::resource('messages', MessageController::class);
+        Route::resource('reviews', ReviewController::class);
     });
 
 require __DIR__ . '/auth.php';
