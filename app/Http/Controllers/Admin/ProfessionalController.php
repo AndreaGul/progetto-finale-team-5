@@ -64,14 +64,18 @@ class ProfessionalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProfessionalRequest $request, User $user)
+    public function update(UpdateProfessionalRequest $request, $user)
     {
         $data = $request->validated();
-        // $project->slug = Str::of($data['title'])->slug('-');
-        $user -> update($data);
+        $new_user =  User::find($user);
         
+        $new_user -> update($data);
 
-         return redirect()->route('admin.professional.index');
+        $professional= Professional::where('user_id', $user)->first();
+        $professional->slug= $new_user->name.'-'.$new_user->surname;
+        $professional->update();
+
+         return redirect()->route('admin.info.index');
     }
 
     /**
