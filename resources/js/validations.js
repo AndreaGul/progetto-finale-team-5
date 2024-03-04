@@ -1,4 +1,5 @@
 const required = ["name", "surname"];
+
 /*
 curriculum
 photo
@@ -24,64 +25,58 @@ submit.addEventListener("click", (event) => {
     let authorize = true;
     // Small Text
     elementsText.forEach((element) => {
-        if (required.includes(element.id)) {
-            if (element.value.length < 3 || element.value.length > 20) {
-                element.classList.add("border", "border-danger");
-                authorize = false;
-            } else if (/[^a-zA-Z]/.test(element.value)) {
-                element.classList.add("border", "border-danger");
-                authorize = false;
-            } else {
-                element.classList.remove("border", "border-danger");
-            }
+        if(!required.includes(element.id) && element.value.length === 0){
+            element.classList.remove('border', 'border-danger');
+        }else if(element.value.length < 3 || element.value.length > 20){
+            element.classList.add('border', 'border-danger');
+            authorize = false;
+        }else if(/[^a-zA-Z]/.test(element.value)){
+            element.classList.add('border', 'border-danger');
+            authorize = false;
+        }else{
+            element.classList.remove('border', 'border-danger');
         }
     });
 
     // Email
     elementsEmail.forEach((element) => {
-        if (required.includes(element.id)) {
-            if (!element.value.includes("@") && !element.value.includes(".")) {
-                element.classList.add("border", "border-danger");
-                authorize = false;
-            } else {
-                element.classList.remove("border", "border-danger");
-            }
+        if(!required.includes(element.id) && element.value.length === 0){
+            element.classList.remove('border', 'border-danger');
+        }else if(!element.value.includes('@') && !element.value.includes('.')){
+            element.classList.add('border', 'border-danger');
+            authorize = false;
+        }else{
+            element.classList.remove('border', 'border-danger');
         }
     });
 
     // Number
     elementsNumber.forEach((element) => {
-        if (required.includes(element.id)) {
-            if (isNaN(element.value)) {
-                element.classList.add("border", "border-danger");
-                authorize = false;
-            } else if (
-                (element.id === "phone" && element.value.length > 20) ||
-                (element.id === "phone" && element.value.length < 10)
-            ) {
-                element.classList.add("border", "border-danger");
-                authorize = false;
-            } else if (element.value.length > 255 || element.value.length < 1) {
-                element.classList.add("border", "border-danger");
-                authorize = false;
-            } else {
-                element.classList.remove("border", "border-danger");
-            }
+        if(!required.includes(element.id) && element.value.length === 0){
+            element.classList.remove('border', 'border-danger');
+        }else if(isNaN(element.value)){
+            element.classList.add('border', 'border-danger');
+            authorize = false;
+        }else if((element.id === 'phone' && element.value.length > 20) || (element.id === 'phone' && element.value.length < 10)){
+            element.classList.add('border', 'border-danger');
+            authorize = false;
+        }else if(element.value.length > 255 || element.value.length < 1){
+            element.classList.add('border', 'border-danger');
+            authorize = false;
+        }else{
+            element.classList.remove('border', 'border-danger');
         }
     });
 
     // Text
     elementsBigText.forEach((element) => {
-        if (required.includes(element.id)) {
-            if (
-                (element.id === "address" && element.value.length > 255) ||
-                element.value.length < 5
-            ) {
-                element.classList.add("border", "border-danger");
-                authorize = false;
-            } else {
-                element.classList.remove("border", "border-danger");
-            }
+        if(!required.includes(element.id) && element.value.length === 0){
+            element.classList.remove('border', 'border-danger');
+        }else if(element.id === 'address' && element.value.length > 255  || element.value.length < 5){
+            element.classList.add('border', 'border-danger');
+            authorize = false;
+        }else{
+            element.classList.remove('border', 'border-danger');
         }
     });
 
