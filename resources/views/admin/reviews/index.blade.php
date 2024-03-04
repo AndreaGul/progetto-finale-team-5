@@ -17,6 +17,8 @@
             @endforeach
         </ul>
     @else
-        <div>non ci sono recensioni</div>
+        <div class="alert alert-info" role="alert">
+            Non ci sono recensioni!
+        </div>
     @endif
 @endsection
