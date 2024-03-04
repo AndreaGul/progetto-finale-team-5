@@ -14,12 +14,19 @@ class MessageSeeder extends Seeder
      */
     public function run()
     {
-        $message = new Message();
+        $messages = [
+            'Ciao, prova messaggio 1',
+            'Potresti aiutarmi con questo progetto?',
+            'Volevo alcune informazioni riguardo al corso'
+        ];
+        foreach ($messages as $message) {
+            $new_message = new Message();
+            $new_message->professional_id = 1;
+            $new_message->message = $message;
+            $new_message->sender_email = 'mariorossi@example.com';
+            $new_message->name = 'Mario Rossi';
 
-        $message->message = 'Ciao';
-        $message->sender_email = 'mariorossi@example.com';
-        $message->name = 'Mario Rossi';
-
-        $message->save();
+            $new_message->save();
+        }
     }
 }

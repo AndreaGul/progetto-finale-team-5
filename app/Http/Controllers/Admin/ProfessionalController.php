@@ -67,6 +67,7 @@ class ProfessionalController extends Controller
     public function update(UpdateProfessionalRequest $request, $user)
     {
         $data = $request->validated();
+
         
         $new_user =  User::find($user);
         
@@ -88,6 +89,7 @@ class ProfessionalController extends Controller
         $professional->performance = $data['performance'];
         
         $professional->update();
+
 
          return redirect()->route('admin.info.index');
     }
