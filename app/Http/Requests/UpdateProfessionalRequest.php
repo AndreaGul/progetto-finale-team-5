@@ -27,8 +27,8 @@ class UpdateProfessionalRequest extends FormRequest
             'surname' => 'required|string|max:30',
             
             'slug' => 'nullable|string|max:61|unique',
-            'curriculum' => 'nullable|string',
-            'photo' => 'nullable|string',
+            'curriculum' => 'nullable|file',
+            'photo' => 'nullable|image',
             'phone' => 'nullable|string|max:20',
             'performance' => 'nullable|string',
             'address' => 'nullable|string',
