@@ -30,7 +30,10 @@
   </div>
   
   
-  <div></div>
+   <div class="input-group my-4">
+                    <input type="file" class="form-control" id="inputGroupFile02" name="curriculum">
+                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                </div>
   
   
     <button type="submit" class="btn btn-primary">Invia</button>
