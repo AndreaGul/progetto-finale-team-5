@@ -12,15 +12,21 @@
             <li><span class="text-primary-emphasis fw-bolder">Cognome : </span> {{ $user->surname }}</li>
             <li><span class="text-primary-emphasis fw-bolder">Email : </span> {{ $user->email }}</li>
             <li>
-                @if ( isset($professional->curriculum))
-                    <a class="text-primary-emphasis fw-bolder" target="_blank" href="{{ asset('storage/'. $professional->curriculum ) }}">Curriculum vitae</a>
+                @if (isset($professional->curriculum))
+                    <a class="text-primary-emphasis fw-bolder" target="_blank"
+                        href="{{ asset('storage/' . $professional->curriculum) }}">Curriculum vitae</a>
                 @else
-                    <p>Curriculum assente</p>
+                    <span class="text-primary-emphasis fw-bolder">Curriculum: </span> assente
                 @endif
-            
+
             </li>
-            
-            <li><img src="{{ asset('storage/'. $professional->photo ) }}" alt="foto assente">
+
+            <li>
+                @if (isset($professional->photo))
+                    <img src="{{ asset('storage/' . $professional->photo) }}" alt="foto assente">
+                @else
+                    <span class="text-primary-emphasis fw-bolder">Foto: </span> assente
+                @endif
             </li>
 
             <li><span class="text-primary-emphasis fw-bolder">Numero telefono: </span>
@@ -29,6 +35,14 @@
                 {{ $professional->address ?: 'Nessun indirizzio inserito' }}</li>
             <li><span class="text-primary-emphasis fw-bolder">Descrizione : </span>
                 {{ $professional->performance ?: 'Nessuna descrizione inserita' }}</li>
+            <li>
+                <span class="text-primary-emphasis fw-bolder">Specializzazioni : </span>
+                <ul>
+                    @foreach ($professional->specializations as $specialization)
+                        <li>{{ $specialization->name }}</li>
+                    @endforeach
+                </ul>
+            </li>
 
         </ul>
 

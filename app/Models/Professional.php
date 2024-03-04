@@ -18,7 +18,7 @@ class Professional extends Model
 
     public function specializations()
     {
-        return $this->belongsToMany(Specialization::class);
+        return $this->belongsToMany(Specialization::class)->withTimestamps();
     }
 
     public function sponsorizations()
