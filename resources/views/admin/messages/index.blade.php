@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    @if ($messages)
+    @if ($messages->count())
         <ul>
             @foreach ($messages as $message)
                 <li>{{ $message->message }}</li>
