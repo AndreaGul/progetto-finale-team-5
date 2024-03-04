@@ -89,13 +89,15 @@ class ProfessionalController extends Controller
         $professional->address = $data['address'];
         $professional->performance = $data['performance'];
 
-        $professional->update();
+       $professional->update();
 
         if ($request->has('specializations')) {
             $professional->specializations()->sync($data['specializations']);
         } else {
             $professional->specializations()->sync([]);
         }
+
+         
 
         return redirect()->route('admin.info.index');
     }
