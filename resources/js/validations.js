@@ -11,6 +11,7 @@ const elementsBigText = [];
 
 const alert = document.getElementById('error-fe');
 const errorText = document.getElementById('error-text');
+const errorList = [''];
 const form = document.getElementById('form');
 const submit = document.getElementById('submit');
 
@@ -29,9 +30,11 @@ submit.addEventListener('click', (event) => {
         }else if(element.value.length < 3 || element.value.length > 20){
             element.classList.add('border', 'border-danger');
             authorize = false;
+            errorList.push(element.id + ' deve contenere almeno 10 e massimo 20 caratteri');
         }else if(/[^a-zA-Z]/.test(element.value)){
             element.classList.add('border', 'border-danger');
             authorize = false;
+            errorList.push(element.id + ' deve contenere solo caratteri alfabetici');
         }else{
             element.classList.remove('border', 'border-danger');
         }
@@ -44,6 +47,7 @@ submit.addEventListener('click', (event) => {
         }else if(!element.value.includes('@') && !element.value.includes('.')){
             element.classList.add('border', 'border-danger');
             authorize = false;
+            errorList.push(element.id + ' non è un email valida');
         }else{
             element.classList.remove('border', 'border-danger');
         }
@@ -56,12 +60,15 @@ submit.addEventListener('click', (event) => {
         }else if(isNaN(element.value)){
             element.classList.add('border', 'border-danger');
             authorize = false;
+            errorList.push(element.id + ' non è un valore numerico');
         }else if((element.id === 'phone' && element.value.length > 20) || (element.id === 'phone' && element.value.length < 10)){
             element.classList.add('border', 'border-danger');
             authorize = false;
+            errorList.push(element.id + ' deve contenere almeno 10 e massimo 20 numeri');
         }else if(element.value.length > 255 || element.value.length < 1){
             element.classList.add('border', 'border-danger');
             authorize = false;
+            errorList.push(element.id + ' deve contenere almeno 1 e massimo 255 numeri');
         }else{
             element.classList.remove('border', 'border-danger');
         }
@@ -74,6 +81,7 @@ submit.addEventListener('click', (event) => {
         }else if(element.id === 'address' && element.value.length > 255  || element.value.length < 5){
             element.classList.add('border', 'border-danger');
             authorize = false;
+            errorList.push(element.id + ' deve contenere almeno 5 e massimo 255 caratteri');
         }else{
             element.classList.remove('border', 'border-danger');
         }
@@ -82,6 +90,7 @@ submit.addEventListener('click', (event) => {
     if(authorize !== true){
         event.preventDefault();
         alert.classList.remove('d-none');
-        errorText.innerText = 'Campi non validi';
+        errorText.innerHTML = errorList.join('<br /> - ');
+        errorList.length = 1;
     }
 });
