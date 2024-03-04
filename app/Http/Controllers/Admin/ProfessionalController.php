@@ -69,7 +69,22 @@ class ProfessionalController extends Controller
         $data = $request->validated();
 
         
+        $new_user =  User::find($user);
+        
         $new_user -> update($data);
+
+        $professional= Professional::where('user_id', $user)->first();
+        $professional->slug= $new_user->name.'-'.$new_user->surname;
+         if($professional->curriculum and isset($data['curriculum'])){
+            Storage::delete($professional->curriculum);
+            $professional->curriculum = Storage::put('uploads', $data['curriculum']);
+        }
+         if($professional->photo and isset($data['photo'])){
+            Storage::delete($professional->photo);
+            $professional->photo = Storage::put('uploads', $data['photo']);
+        }
+        
+        $professional->update();
 
 
          return redirect()->route('admin.info.index');
