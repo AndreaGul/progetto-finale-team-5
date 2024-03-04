@@ -27,7 +27,7 @@
                     <a class="text-primary-emphasis fw-bolder" target="_blank"
                         href="{{ asset('storage/' . $professional->curriculum) }}">Curriculum vitae</a>
                 @else
-                    <p>Curriculum assente</p>
+                    <span class="text-primary-emphasis fw-bolder">Curriculum: </span>assente
                 @endif
 
             </li>
