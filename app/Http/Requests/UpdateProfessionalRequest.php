@@ -33,7 +33,7 @@ class UpdateProfessionalRequest extends FormRequest
     'phone' => 'nullable|string|max:20',
     'performance' => 'nullable|string',
     'address' => 'nullable|string',
-];
+]
         ];
     }
 }
