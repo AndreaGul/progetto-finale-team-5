@@ -13,10 +13,10 @@ return new class extends Migration
     {
         //
 
-        Schema::table('messages', function(Blueprint $table){
-            $table->unsignedBigInteger('user_id')->nullable()->after('id');
+        Schema::table('messages', function (Blueprint $table) {
+            $table->unsignedBigInteger('professional_id')->nullable()->after('id');
 
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('professional_id')->references('id')->on('professionals')->cascadeOnDelete();
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down(): void
     {
         //
-                Schema::table('messages', function(Blueprint $table){
+        Schema::table('messages', function (Blueprint $table) {
             $table->dropForeign('messages_user_id_foreign');
             $table->dropColumn('user_id');
         });
