@@ -22,6 +22,7 @@
             
             <li><img src="{{ asset('storage/'. $professional->photo ) }}" alt="foto assente">
             </li>
+
             <li><span class="text-primary-emphasis fw-bolder">Numero telefono: </span>
                 {{ $professional->phone ?: 'Nessun numero di telefono inserito' }}</li>
             <li><span class="text-primary-emphasis fw-bolder">Indirizzo : </span>
