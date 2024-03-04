@@ -67,13 +67,10 @@ class ProfessionalController extends Controller
     public function update(UpdateProfessionalRequest $request, $user)
     {
         $data = $request->validated();
-        $new_user =  User::find($user);
+
         
         $new_user -> update($data);
 
-        $professional= Professional::where('user_id', $user)->first();
-        $professional->slug= $new_user->name.'-'.$new_user->surname;
-        $professional->update();
 
          return redirect()->route('admin.info.index');
     }
