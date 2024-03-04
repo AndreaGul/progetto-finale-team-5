@@ -7,6 +7,7 @@ use App\Models\Professional;
 use App\Http\Requests\StoreProfessionalRequest;
 use App\Http\Requests\UpdateProfessionalRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class ProfessionalController extends Controller
 {
@@ -63,9 +64,14 @@ class ProfessionalController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProfessionalRequest $request, Professional $professional)
+    public function update(UpdateProfessionalRequest $request, User $user)
     {
-        //
+        $data = $request->validated();
+        // $project->slug = Str::of($data['title'])->slug('-');
+        $user -> update($data);
+        
+
+         return redirect()->route('admin.professional.index');
     }
 
     /**
