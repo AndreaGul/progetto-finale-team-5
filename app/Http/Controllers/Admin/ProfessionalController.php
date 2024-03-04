@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Professional;
 use App\Http\Requests\StoreProfessionalRequest;
 use App\Http\Requests\UpdateProfessionalRequest;
+use App\Models\User;
 
 class ProfessionalController extends Controller
 {
@@ -13,8 +14,12 @@ class ProfessionalController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
+    {   
+        $user= User::find(Auth::id());
+       
+        $professional= Professional::where('user_id', Auth::id())->first();
+         
+        return view('admin.professionals.index',compact('user','professional'));
 
         
     }
@@ -47,8 +52,12 @@ class ProfessionalController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Professional $professional)
-    {
-        //
+    {   $user= User::find(Auth::id());
+      
+        $professional= Professional::where('user_id', Auth::id())->first();
+         
+        return view('admin.professionals.edit',compact('user','professional'));
+
     }
 
     /**
