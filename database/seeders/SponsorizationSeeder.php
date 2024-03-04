@@ -13,19 +13,16 @@ class SponsorizationSeeder extends Seeder
      */
     public function run(): void
     {
-        $sponsorization1 = new Sponsorization();
-        $sponsorization1->price = 2.99;
-        $sponsorization1->hours = 24;
-        $sponsorization1->save();
-
-        $sponsorization2 = new Sponsorization();
-        $sponsorization2->price = 5.99;
-        $sponsorization2->hours = 72;
-        $sponsorization2->save();
-
-        $sponsorization3 = new Sponsorization();
-        $sponsorization3->price = 9.99;
-        $sponsorization3->hours = 144;
-        $sponsorization3->save();
+        $sponsorizarions = [
+            [2.99, 24],
+            [5.99, 72],
+            [9.99, 144]
+        ];
+        foreach ($sponsorizarions as $sponsorizarion) {
+            $new_sponsorizarion = new Sponsorization();
+            $new_sponsorizarion->price = $sponsorizarion[0];
+            $new_sponsorizarion->hours = $sponsorizarion[1];
+            $new_sponsorizarion->save();
+        }
     }
 }

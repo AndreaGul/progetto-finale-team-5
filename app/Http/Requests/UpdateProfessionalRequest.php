@@ -22,18 +22,17 @@ class UpdateProfessionalRequest extends FormRequest
     public function rules(): array
     {
         return [
-            $rules = [
-    'name' => 'required|string|max:30',
-    'surname' => 'required|string|max:30',
-    'email' => 'required|string|email|max:50|unique:users,email',
-    'password' => 'required|string',
-    'slug' => 'nullable|string|max:61',
-    'curriculum' => 'nullable|string',
-    'photo' => 'nullable|string',
-    'phone' => 'nullable|string|max:20',
-    'performance' => 'nullable|string',
-    'address' => 'nullable|string',
-];
+            
+            'name' => 'required|string|max:30',
+            'surname' => 'required|string|max:30',
+            
+            'slug' => 'nullable|string|max:61|unique',
+            'curriculum' => 'nullable|file',
+            'photo' => 'nullable|image',
+            'phone' => 'nullable|string|max:20',
+            'performance' => 'nullable|string',
+            'address' => 'nullable|string',
+            
         ];
     }
 }
