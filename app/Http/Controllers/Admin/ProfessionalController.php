@@ -68,10 +68,12 @@ class ProfessionalController extends Controller
     {
         $data = $request->validated();
         // $project->slug = Str::of($data['title'])->slug('-');
+
+        
         $user -> update($data);
         
 
-         return redirect()->route('admin.professional.index');
+         return redirect()->route('admin.info.index');
     }
 
     /**
