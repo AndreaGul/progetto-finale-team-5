@@ -1,4 +1,4 @@
-const required = ["name", "surname"];
+const required = ["nome", "cognome"];
 
 /*
 curriculum
@@ -16,11 +16,11 @@ const errorList = [''];
 const form = document.getElementById('form');
 const submit = document.getElementById('submit');
 
-elementsText.push(document.getElementById("name"));
-elementsText.push(document.getElementById("surname"));
-elementsNumber.push(document.getElementById("phone"));
-elementsBigText.push(document.getElementById("address"));
-elementsBigText.push(document.getElementById("performance"));
+elementsText.push(document.getElementById("nome"));
+elementsText.push(document.getElementById("cognome"));
+elementsNumber.push(document.getElementById("telefono"));
+elementsBigText.push(document.getElementById("indirizzo"));
+elementsBigText.push(document.getElementById("descrizione"));
 
 submit.addEventListener("click", (event) => {
     let authorize = true;
@@ -31,7 +31,7 @@ submit.addEventListener("click", (event) => {
         }else if(element.value.length < 3 || element.value.length > 20){
             element.classList.add('border', 'border-danger');
             authorize = false;
-            errorList.push(element.id + ' deve contenere almeno 10 e massimo 20 caratteri');
+            errorList.push(element.id + ' deve contenere almeno 3 e massimo 20 caratteri');
         }else if(/[^a-zA-Z]/.test(element.value)){
             element.classList.add('border', 'border-danger');
             authorize = false;
@@ -62,7 +62,7 @@ submit.addEventListener("click", (event) => {
             element.classList.add('border', 'border-danger');
             authorize = false;
             errorList.push(element.id + ' non è un valore numerico');
-        }else if((element.id === 'phone' && element.value.length > 20) || (element.id === 'phone' && element.value.length < 10)){
+        }else if((element.id === 'telefono' && element.value.length > 20) || (element.id === 'telefono' && element.value.length < 10)){
             element.classList.add('border', 'border-danger');
             authorize = false;
             errorList.push(element.id + ' deve contenere almeno 10 e massimo 20 numeri');
@@ -79,7 +79,7 @@ submit.addEventListener("click", (event) => {
     elementsBigText.forEach((element) => {
         if(!required.includes(element.id) && element.value.length === 0){
             element.classList.remove('border', 'border-danger');
-        }else if(element.id === 'address' && element.value.length > 255  || element.value.length < 5){
+        }else if(element.id === 'indirizzo' && element.value.length > 255  || element.value.length < 5){
             element.classList.add('border', 'border-danger');
             authorize = false;
             errorList.push(element.id + ' deve contenere almeno 5 e massimo 255 caratteri');
