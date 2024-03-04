@@ -22,7 +22,7 @@
             <li>{{$professional->phone ? $professional->phone : 'telefono assente'}}</li>
             <li>{{$professional->address ? $professional->address : 'indirizzo assente'}}</li>
             <li>{{$professional->performance ? $professional->performance : 'descrizione assente'}}</li>
-
+            <li>{{$user->phone}}</li>
             
              
         </ul>

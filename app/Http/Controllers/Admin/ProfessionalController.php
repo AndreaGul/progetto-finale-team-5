@@ -83,6 +83,10 @@ class ProfessionalController extends Controller
             $professional->photo = Storage::put('uploads', $data['photo']);
         }
         
+        $professional->phone = $data['phone'];
+        $professional->address = $data['address'];
+        $professional->performance = $data['performance'];
+        
         $professional->update();
 
          return redirect()->route('admin.info.index');
