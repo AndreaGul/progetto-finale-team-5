@@ -68,6 +68,7 @@ class ProfessionalController extends Controller
     public function update(UpdateProfessionalRequest $request, $user)
     {
         $data = $request->validated();
+        // dd($data);
 
 
         $new_user =  User::find($user);
@@ -76,8 +77,7 @@ class ProfessionalController extends Controller
 
         $professional = Professional::where('user_id', $user)->first();
         $professional->slug = $new_user->name . '-' . $new_user->surname;
-        if ($professional->curriculum and isset($data['curriculum'])) {
-            Storage::delete($professional->curriculum);
+       if (isset($data['curriculum'])) {
             $professional->curriculum = Storage::put('uploads', $data['curriculum']);
         }
         if ($professional->photo and isset($data['photo'])) {
