@@ -24,8 +24,8 @@ Route::middleware('auth', 'verified')
     ->name('admin.')
     ->prefix('admin')
     ->group(function () {Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+    return view('admin.dashboard');
+    })->name('dashboard');
         Route::resource('info', ProfessionalController::class);
 
     });
