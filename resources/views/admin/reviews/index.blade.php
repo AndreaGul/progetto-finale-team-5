@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1 class="text-primary mt-3">Reviews</h1>
+    <h1 class="text-primary mt-3">Recensioni</h1>
     @if ($reviews->count())
         <ul class="list-unstyled">
             @foreach ($reviews as $review)

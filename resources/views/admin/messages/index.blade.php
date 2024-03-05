@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1 class="text-primary mt-3">Messages</h1>
+    <h1 class="text-primary mt-3">Messaggi</h1>
     @if ($messages->count())
         <ul class="list-unstyled">
             @foreach ($messages as $message)

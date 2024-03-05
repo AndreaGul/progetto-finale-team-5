@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Booltechs') }}</title>
 
     <!-- Fontawesome 6 cdn -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css'
@@ -57,7 +57,7 @@
                 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark navbar-dark sidebar collapse">
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">
-                            
+
                             <li class="nav-item">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.info.index' ? 'bg-primary' : '' }}"
                                     href="{{ route('admin.info.index') }}">
@@ -68,14 +68,14 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.messages.index' ? 'bg-primary' : '' }}"
                                     href="{{ route('admin.messages.index') }}">
-                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Messages
+                                    <i class="fa-regular fa-message fa-lg fa-fw"></i> Messaggi
                                 </a>
 
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.reviews.index' ? 'bg-primary' : '' }}"
                                     href="{{ route('admin.reviews.index') }}">
-                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Reviews
+                                    <i class="fa-regular fa-comment fa-lg fa-fw"></i> Recensioni
                                 </a>
 
                             </li>
