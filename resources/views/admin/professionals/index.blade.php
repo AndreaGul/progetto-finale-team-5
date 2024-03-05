@@ -34,9 +34,9 @@
 
             <li>
                 @if (isset($professional->photo))
-                    <img src="{{ asset('storage/' . $professional->photo) }}" alt="foto assente">
+                    <img src="{{ asset('storage/' . $professional->photo) }}" alt="foto profilo assente">
                 @else
-                    <span class="text-primary-emphasis fw-bolder">Foto: </span> assente
+                    <span class="text-primary-emphasis fw-bolder">Foto profilo: </span> assente
                 @endif
             </li>
 
