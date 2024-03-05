@@ -77,11 +77,16 @@ class ProfessionalController extends Controller
 
         $professional = Professional::where('user_id', $user)->first();
         $professional->slug = $new_user->name . '-' . $new_user->surname;
-       if (isset($data['curriculum'])) {
+        if ($professional->curriculum and isset($data['curriculum'])) {
+            Storage::delete($professional->curriculum);
+            $professional->curriculum = Storage::put('uploads', $data['curriculum']);
+        } else if (isset($data['curriculum'])) {
             $professional->curriculum = Storage::put('uploads', $data['curriculum']);
         }
         if ($professional->photo and isset($data['photo'])) {
             Storage::delete($professional->photo);
+            $professional->photo = Storage::put('uploads', $data['photo']);
+        } else if (isset($data['photo'])) {
             $professional->photo = Storage::put('uploads', $data['photo']);
         }
 
@@ -89,7 +94,7 @@ class ProfessionalController extends Controller
         $professional->address = $data['address'];
         $professional->performance = $data['performance'];
 
-       $professional->update();
+        $professional->update();
 
         if ($request->has('specializations')) {
             $professional->specializations()->sync($data['specializations']);
@@ -97,7 +102,7 @@ class ProfessionalController extends Controller
             $professional->specializations()->sync([]);
         }
 
-         
+
 
         return redirect()->route('admin.info.index');
     }
