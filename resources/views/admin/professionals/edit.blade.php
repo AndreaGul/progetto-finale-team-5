@@ -69,9 +69,7 @@
             <label for="address" class="form-label">Descrizione</label>
             <div class="form-floating">
                 <textarea name="performance" id="descrizione" cols="30" rows="10" class="form-control p-1"
-                    placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">
-                    {{ old('address', $user->professional->performance) }}
-                </textarea>
+                    placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">{{ old('address', $user->professional->performance) }}</textarea>
             </div>
         </div>
 
