@@ -29,12 +29,12 @@
         @method('PUT')
 
         <div class="col-12">
-            <label for="name" class="form-label">Nome</label>
+            <label for="name" class="form-label">Nome*</label>
             <input type="text" class="form-control" id="nome" name="name" value="{{ old('name', $user->name) }}"
                 required>
         </div>
         <div class="col-12">
-            <label for="surname" class="form-label">Cognome</label>
+            <label for="surname" class="form-label">Cognome*</label>
             <input type="text" class="form-control" id="cognome" name="surname"
                 value="{{ old('surname', $user->surname) }}" required>
         </div>
@@ -97,7 +97,7 @@
         </div>
 
 
-        <button type="submit" id="submit" class="btn btn-primary col-1">Modifica</button>
+        <button type="submit" id="submit" class="btn btn-primary col-1">Salva</button>
         </div>
     </form>
     <!-- Js-->
