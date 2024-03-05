@@ -54,13 +54,13 @@
 
         <div class="col-12">
             <label for="phone" class="form-label">Telefono</label>
-            <input type="text" class="form-control" id="phone" name="phone"
+            <input type="text" class="form-control" id="telefono" name="phone"
                 value="{{ old('phone', $user->professional->phone) }}">
         </div>
 
         <div class="col-12">
             <label for="address" class="form-label">Indirizzo</label>
-            <input type="text" class="form-control" id="address" name="address"
+            <input type="text" class="form-control" id="indirizzo" name="address"
                 value="{{ old('address', $user->professional->address) }}">
         </div>
 
@@ -68,7 +68,7 @@
         <div class="col-12">
             <label for="address" class="form-label">Descrizione</label>
             <div class="form-floating">
-                <textarea name="performance" id="performance" cols="30" rows="10" class="form-control p-1"
+                <textarea name="performance" id="descrizione" cols="30" rows="10" class="form-control p-1"
                     placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">
                     {{ old('address', $user->professional->performance) }}
                 </textarea>
