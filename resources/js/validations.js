@@ -5,16 +5,29 @@ curriculum
 photo
 */
 
+function setErrorText(element, errorText, arrayText){
+    arrayText.forEach((elementArray) => {
+        if(elementArray.id === `errore-${element.id}`){
+            elementArray.innerText = errorText;
+            elementArray.classList.remove('d-none');
+        }
+    });
+}
+
 const elementsText = [];
 const elementsEmail = [];
 const elementsNumber = [];
 const elementsBigText = [];
 
-const alert = document.getElementById('error-fe');
-const errorText = document.getElementById('error-text');
-const errorList = [''];
 const form = document.getElementById('form');
 const submit = document.getElementById('submit');
+
+const arrayErrorText = [];
+arrayErrorText.push(document.getElementById('errore-nome'));
+arrayErrorText.push(document.getElementById('errore-cognome'));
+arrayErrorText.push(document.getElementById('errore-telefono'));
+arrayErrorText.push(document.getElementById('errore-indirizzo'));
+arrayErrorText.push(document.getElementById('errore-descrizione'));
 
 elementsText.push(document.getElementById("nome"));
 elementsText.push(document.getElementById("cognome"));
@@ -31,11 +44,11 @@ submit.addEventListener("click", (event) => {
         }else if(element.value.length < 3 || element.value.length > 20){
             element.classList.add('border', 'border-danger');
             authorize = false;
-            errorList.push(element.id + ' deve contenere almeno 3 e massimo 20 caratteri');
+            setErrorText(element, element.id + ' deve contenere almeno 3 e massimo 20 caratteri', arrayErrorText);
         }else if(/[^a-zA-Z]/.test(element.value)){
             element.classList.add('border', 'border-danger');
             authorize = false;
-            errorList.push(element.id + ' deve contenere solo caratteri alfabetici');
+            setErrorText(element, element.id + ' deve contenere solo caratteri alfabetici', arrayErrorText);
         }else{
             element.classList.remove('border', 'border-danger');
         }
@@ -48,7 +61,7 @@ submit.addEventListener("click", (event) => {
         }else if(!element.value.includes('@') && !element.value.includes('.')){
             element.classList.add('border', 'border-danger');
             authorize = false;
-            errorList.push(element.id + ' non è un email valida');
+            setErrorText(element, element.id + ' non è un email valida', arrayErrorText);
         }else{
             element.classList.remove('border', 'border-danger');
         }
@@ -61,15 +74,15 @@ submit.addEventListener("click", (event) => {
         }else if(isNaN(element.value)){
             element.classList.add('border', 'border-danger');
             authorize = false;
-            errorList.push(element.id + ' non è un valore numerico');
+            setErrorText(element, element.id + ' non è un valore numerico', arrayErrorText);
         }else if((element.id === 'telefono' && element.value.length > 20) || (element.id === 'telefono' && element.value.length < 10)){
             element.classList.add('border', 'border-danger');
             authorize = false;
-            errorList.push(element.id + ' deve contenere almeno 10 e massimo 20 numeri');
+            setErrorText(element, element.id + ' deve contenere almeno 10 e massimo 20 numeri', arrayErrorText);
         }else if(element.value.length > 255 || element.value.length < 1){
             element.classList.add('border', 'border-danger');
             authorize = false;
-            errorList.push(element.id + ' deve contenere almeno 1 e massimo 255 numeri');
+            setErrorText(element, element.id + ' deve contenere almeno 1 e massimo 255 numeri', arrayErrorText);
         }else{
             element.classList.remove('border', 'border-danger');
         }
@@ -82,7 +95,7 @@ submit.addEventListener("click", (event) => {
         }else if(element.id === 'indirizzo' && element.value.length > 255  || element.value.length < 5){
             element.classList.add('border', 'border-danger');
             authorize = false;
-            errorList.push(element.id + ' deve contenere almeno 5 e massimo 255 caratteri');
+            setErrorText(element, element.id + ' deve contenere almeno 5 e massimo 255 caratteri', arrayErrorText);
         }else{
             element.classList.remove('border', 'border-danger');
         }
@@ -90,8 +103,5 @@ submit.addEventListener("click", (event) => {
 
     if (authorize !== true) {
         event.preventDefault();
-        alert.classList.remove('d-none');
-        errorText.innerHTML = errorList.join('<br /> - ');
-        errorList.length = 1;
     }
 });
