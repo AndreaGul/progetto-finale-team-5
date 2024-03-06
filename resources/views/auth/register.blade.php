@@ -69,10 +69,10 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Password*') }}</label>
 
                                 <div class="col-md-6">
+                                    <strong class="text-danger  d-none" id="error-text"></strong>
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         required autocomplete="new-password">
-
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ 'Le password sono diverse' }}</strong>
@@ -93,12 +93,15 @@
 
                             <div class="mb-4 row mb-0">
                                 <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-primary" id="submit">
                                         {{ __('Registrati') }}
                                     </button>
                                 </div>
                             </div>
                         </form>
+                        <!-- Js-->
+                        @vite(['resources/js/register.js'])
+                        <!-- Fine Js-->
                     </div>
                 </div>
             </div>
