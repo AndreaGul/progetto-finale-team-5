@@ -33,5 +33,4 @@ Route::middleware('auth', 'verified')
         Route::resource('messages', MessageController::class);
         Route::resource('reviews', ReviewController::class);
     });
-
 require __DIR__ . '/auth.php';

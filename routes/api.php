@@ -17,8 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//http://127.0.0.1:8000/api/user
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    return '$request->user()';
 });
 
 //http://127.0.0.1:8000/api/professionals/1,4
