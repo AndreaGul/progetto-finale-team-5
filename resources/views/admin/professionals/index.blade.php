@@ -8,20 +8,19 @@
 
         <ul class="list-unstyled">
 
+            <li>
+                @if (isset($professional->photo) && Storage::exists($professional->photo))
+                    <img src="{{ asset('storage/' . $professional->photo) }}" alt="foto profilo assente" class="user-img">
+                @elseif(isset($professional->photo))
+                    <img src="{{ $professional->photo }}" alt="foto profilo assente" class="user-img">
+                @else
+                    <img src="https://static.vecteezy.com/ti/vettori-gratis/p3/26530210-moderno-persona-icona-utente-e-anonimo-icona-vettore-vettoriale.jpg"
+                        alt="foto profilo assente" class="user-img">
+                @endif
+            </li>
             <li><span class="text-primary-emphasis fw-bolder">Nome : </span>{{ $user->name }}</li>
             <li><span class="text-primary-emphasis fw-bolder">Cognome : </span> {{ $user->surname }}</li>
             <li><span class="text-primary-emphasis fw-bolder">Email : </span> {{ $user->email }}</li>
-            {{-- <li>
-                @if (isset($professional->curriculum))
-                    <a class="text-primary-emphasis fw-bolder" target="_blank"
-                        href="{{ asset('storage/' . $professional->curriculum) }}">Curriculum vitae</a>
-                @else
-                    <span class="text-primary-emphasis fw-bolder">Curriculum: </span> assente
-                @endif
-
-            </li> --}}
-
-
             <li>
                 @if (isset($professional->curriculum))
                     <a class="text-primary-emphasis fw-bolder" target="_blank"
@@ -30,15 +29,6 @@
                     <span class="text-primary-emphasis fw-bolder">Curriculum: </span>assente
                 @endif
 
-            </li>
-            <li>
-                @if (isset($professional->photo) && Storage::exists($professional->photo))
-                    <img src="{{ asset('storage/' . $professional->photo) }}" alt="foto profilo assente">
-                @elseif(isset($professional->photo))
-                    <img src="{{ $professional->photo }}" alt="foto profilo assente">
-                @else
-                    <span class="text-primary-emphasis fw-bolder">Foto profilo: </span> assente
-                @endif
             </li>
 
             <li><span class="text-primary-emphasis fw-bolder">Numero telefono: </span>
