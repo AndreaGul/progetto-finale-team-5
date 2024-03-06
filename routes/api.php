@@ -25,6 +25,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //http://127.0.0.1:8000/api/professionals/1,4
 Route::get('professionals/{id}', [ProfessionalController::class, 'index']);
 
+//http://127.0.0.1:8000/api/professionals/show/1
+Route::get('professionals/show/{id}', [ProfessionalController::class, 'show']);
+
 //http://127.0.0.1:8000/api/specializations
 Route::get('specializations', [SpecializationController::class, 'index']);
 
