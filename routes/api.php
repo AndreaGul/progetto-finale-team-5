@@ -32,4 +32,13 @@ Route::get('professionals/show/{id}', [ProfessionalController::class, 'show']);
 Route::get('specializations', [SpecializationController::class, 'index']);
 
 
-// Route::get('projects/{slug}', [ProjectController::class, 'show']);
+/*
+use Illuminate\Support\Facades\Auth;
+
+
+Route::get('/userLoggedIn', function (Request $request) {
+    return response()->json([
+        'loggedIn' => Auth::check()
+    ]);
+});
+*/
