@@ -43,7 +43,11 @@ class ProfessionalController extends Controller
     }
     public function show($id)
     {
-        $professional = Professional::where('id', $id)->with('messages', 'reviews', 'votes' ,'user', 'specializations')->first();
+        if(is_numeric($id)){
+            $professional = Professional::where('id', $id)->with('messages', 'reviews', 'votes' ,'user', 'specializations')->first();
+        }else{
+            $professional = Professional::where('slug', $id)->with('messages', 'reviews', 'votes' ,'user', 'specializations')->first();
+        }
         if($professional){
             return response()->json([
                 'status' => 'success',
