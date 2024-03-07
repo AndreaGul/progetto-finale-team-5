@@ -24,13 +24,13 @@
 
         <div class="col-12">
             <p class="alert alert-danger mt-3 mb-0 d-none" id='errore-nome'></p>
-            <label for="name" class="form-label">Nome*</label>
+            <label for="name" class="form-label">Nome <span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="nome" name="name" value="{{ old('name', $user->name) }}"
                 required>
         </span>
         <div class="col-12">
             <p class="alert alert-danger mt-3 mb-0 d-none" id='errore-cognome'></p>
-            <label for="surname" class="form-label">Cognome*</label>
+            <label for="surname" class="form-label">Cognome <span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="cognome" name="surname"
                 value="{{ old('surname', $user->surname) }}" required>
         </div>
