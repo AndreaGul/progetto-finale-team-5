@@ -99,6 +99,7 @@
                                 </div>
                             </div>
                         </form>
+                        <p class="mt-3"><span class="text-danger">*</span> Campi obbligatori</p>
                         <!-- Js-->
                         @vite(['resources/js/register.js'])
                         <!-- Fine Js-->

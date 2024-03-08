@@ -97,6 +97,7 @@
 
 
         <button type="submit" id="submit" class="btn btn-primary col-1">Salva</button>
+        <p class="mt-3"><span class="text-danger">*</span> Campi obbligatori</p>
         </div>
     </form>
     <!-- Js-->
