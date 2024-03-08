@@ -7,6 +7,7 @@ use App\Models\Message;
 use App\Models\Professional;
 use App\Models\Review;
 use App\Models\Specialization;
+use App\Models\Vote;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -123,6 +124,35 @@ class ProfessionalController extends Controller
         $new_review->email_reviewer = request()->email;
         $new_review->name_reviewer = request()->name;
         $new_review->save();
+
+        return response()->json([
+            'status' => 'success',
+            'data' => ''
+        ]);
+    }
+
+    public function addVote()
+    {
+        try {
+            request()->validate([
+                'professional_id' => ['exists:professionals,id'],
+                'lookup_id' => ['exists:lookup_votes,id'],
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json(
+                [
+                    'status' => 'failed',
+                    'error' => $e->errors()
+                ],
+                422
+            );
+        }
+
+
+        $new_vote = new Vote();
+        $new_vote->professional_id = request()->professional_id;
+        $new_vote->lookup_id = request()->lookup_id;
+        $new_vote->save();
 
         return response()->json([
             'status' => 'success',
