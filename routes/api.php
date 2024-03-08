@@ -28,6 +28,12 @@ Route::get('professionals/{id}', [ProfessionalController::class, 'index']);
 //http://127.0.0.1:8000/api/professionals/show/1
 Route::get('professionals/show/{id}', [ProfessionalController::class, 'show']);
 
+//http://127.0.0.1:8000/api/professionals/message
+Route::post('professionals/message', [ProfessionalController::class, 'addMessage']);
+
+//http://127.0.0.1:8000/api/professionals/review
+Route::post('professionals/review', [ProfessionalController::class, 'addReview']);
+
 //http://127.0.0.1:8000/api/specializations
 Route::get('specializations', [SpecializationController::class, 'index']);
 
