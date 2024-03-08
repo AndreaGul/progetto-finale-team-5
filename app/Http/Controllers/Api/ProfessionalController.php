@@ -25,7 +25,7 @@ class ProfessionalController extends Controller
                 $current_time = now();// data e ora
                 $professionals = Professional::whereHas('specializations', function ($query) use ($ids){
                     $query->whereIn('id', $ids);
-                })->with(['specializations','sponsorizations' => function ($query) use($current_time){
+                })->with(['user','specializations','sponsorizations' => function ($query) use($current_time){
                     $query->withPivot('professional_id', 'sponsorization_id', 'date_end_sponsorization')->where('date_end_sponsorization', '>', $current_time)->orderBy('date_end_sponsorization', 'desc')->limit(1);
                 }])->paginate(10);
                 return response()->json([
