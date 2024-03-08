@@ -52,8 +52,9 @@ class ProfessionalController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Professional $professional)
+    public function edit($professional)
     {
+        if(Auth::id() != $professional)return redirect()->route('home');
         $user = User::find(Auth::id());
 
         $specializations = Specialization::all();
