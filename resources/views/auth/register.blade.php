@@ -69,10 +69,10 @@
                                     class="col-md-4 col-form-label text-md-right">{{ __('Password') }} <span class="text-danger">*</span></label>
 
                                 <div class="col-md-6">
-                                    <strong class="text-danger  d-none" id="error-text"></strong>
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         required autocomplete="new-password">
+                                        <p class="text-danger  d-none" id="error-text"></p>
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ 'Le password sono diverse' }}</strong>
