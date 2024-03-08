@@ -9,40 +9,67 @@ use App\Models\Review;
 use App\Models\Specialization;
 use App\Models\Vote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
 class ProfessionalController extends Controller
 {
-    public function index($param)
+    public function index($param, $vote, $review)
     {
-        if (!empty($param)) {
-            // validazione
-            $values = explode(',', $param);
+
+        if($param !== false){
+            
             $ids = [];
             $specializations = Specialization::pluck('id')->toArray();
-            foreach ($values as $value) {
-                if (in_array($value, $specializations)) $ids[] = $value;
-            }
+            if (in_array($param, $specializations)) $ids[] = $param;
 
             if (count($ids) > 0) {
                 // se ci sono id validi | mostra solo l'ultima sponsorizzazione e solo se la data di fine è maggiore
                 $current_time = now(); // data e ora
                 $professionals = Professional::whereHas('specializations', function ($query) use ($ids) {
                     $query->whereIn('id', $ids);
-                })->with(['user', 'specializations', 'sponsorizations' => function ($query) use ($current_time) {
+                })->with(['user' , 'votes', 'reviews', 'specializations', 'sponsorizations' => function ($query) use ($current_time) {
                     $query->withPivot('professional_id', 'sponsorization_id', 'date_end_sponsorization')->where('date_end_sponsorization', '>', $current_time)->orderBy('date_end_sponsorization', 'desc')->limit(1);
-                }])->paginate(10);
+                }])->withCount('reviews')->withCount(['votes as average_rating' => function ($query) {
+                    $query->select(DB::raw('coalesce(avg(lookup_id), 0)'));
+                }])->get();
+
+                if($vote != 'false' && $review != 'false'){
+                    // tutto
+                    $professionals = $professionals->filter(function ($professional) use($review){
+                        return $professional->reviews_count >= $review;
+                    });
+                    $professionals = $professionals->filter(function ($professional) use($vote){
+                        return $professional->average_rating >= $vote;
+                    });
+                }elseif($vote == 'false' && $review != 'false'){
+                    // solo in base alle recensioni
+                    $professionals = $professionals->filter(function ($professional) use($review){
+                        return $professional->reviews_count >= $review;
+                    });
+                }elseif($vote != 'false' && $review == 'false'){
+                    // solo in base alla media dei voti
+                    $professionals = $professionals->filter(function ($professional) use($vote){
+                        return $professional->average_rating >= $vote;
+                    });
+                }
+
                 return response()->json([
-                    'status' => 'success',
+                    'status' => 'successo',
                     'data' => $professionals
                 ]);
-            } else {
-                // se gli di non sono validi
+            }else{
                 return response()->json([
-                    'status' => 'error',
-                    'data' => 'invalid ids'
+                    'status' => 'errore',
+                    'data' => 'id non valido'
                 ]);
             }
+        }else{
+            // ricerca non valida
+            return response()->json([
+                'status' => 'errore',
+                'data' => 'parametro non selezionato'
+            ]);
         }
     }
     public function show($id)
