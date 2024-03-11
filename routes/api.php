@@ -37,8 +37,11 @@ Route::post('professionals/review', [ProfessionalController::class, 'addReview']
 //http://127.0.0.1:8000/api/professionals/vote
 Route::post('professionals/vote', [ProfessionalController::class, 'addVote']);
 
+Route::get('professionals/sponsored', [ProfessionalController::class, 'sponsored']);
+
 //http://127.0.0.1:8000/api/specializations
 Route::get('specializations', [SpecializationController::class, 'index']);
+
 
 
 /*
