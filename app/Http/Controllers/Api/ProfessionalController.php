@@ -44,10 +44,22 @@ class ProfessionalController extends Controller
                 $professionals = Professional::whereHas('specializations', function ($query) use ($specialization_id) {
                     $query->where('id', $specialization_id);
                 })->with(['user', 'votes', 'reviews', 'specializations', 'sponsorizations' => function ($query) use ($current_time) {
-                    $query->withPivot('professional_id', 'sponsorization_id', 'date_end_sponsorization')->where('date_end_sponsorization', '>', $current_time)->orderBy('date_end_sponsorization', 'desc')->limit(1);
+                    $query->withPivot('professional_id', 'sponsorization_id', 'date_end_sponsorization')->where('date_end_sponsorization', '>', $current_time)->orderBy('date_end_sponsorization', 'desc');
                 }])->withCount('reviews')->withCount(['votes as average_rating' => function ($query) {
                     $query->select(DB::raw('coalesce(avg(lookup_id), 0)'));
                 }])->get();
+
+                 // mostra prima chi è sponsorizzato
+                $professionalsSponsored = $professionals->filter(function ($professional) {
+                    // sponsorizzati
+                    return $professional->sponsorizations->isNotEmpty();
+                });
+                $professionalsNotSponsored = $professionals->filter(function ($professional) {
+                    // non sponsorizzati
+                    return $professional->sponsorizations->isEmpty();
+                });
+                // unisce gli oggetti
+                $professionals = $professionalsSponsored->merge($professionalsNotSponsored);
 
 
                 if ($review && $vote) {
