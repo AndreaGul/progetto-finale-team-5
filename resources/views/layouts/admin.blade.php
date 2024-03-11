@@ -80,14 +80,7 @@
 
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.reviews.index' ? 'bg-primary' : '' }}"
-                                    href="{{ route('admin.prova') }}">
-                                    <i class="fa-regular fa-comment fa-lg fa-fw"></i> paga
-                                </a>
-
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.reviews.index' ? 'bg-primary' : '' }}"
+                                <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.sponsorization' ? 'bg-primary' : '' }}"
                                     href="{{ route('admin.sponsorization') }}">
                                     <i class="fa-regular fa-comment fa-lg fa-fw"></i> Sponsorizzazioni
                                 </a>
