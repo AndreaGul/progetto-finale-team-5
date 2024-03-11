@@ -163,10 +163,13 @@ class ProfessionalController extends Controller
     public function show($id)
     {
         if (is_numeric($id)) {
-            $professional = Professional::where('id', $id)->with('messages', 'reviews', 'votes', 'user', 'specializations')->first();
+            $param = 'id';
         } else {
-            $professional = Professional::where('slug', $id)->with('messages', 'reviews', 'votes', 'user', 'specializations')->first();
+            $param = 'slug';
         }
+        $professional = Professional::where($param, $id)->with('messages', 'reviews', 'votes', 'user', 'specializations')->withCount(['votes as average_rating' => function ($query) {
+            $query->select(DB::raw('coalesce(avg(lookup_id), 0)'));
+        }])->first();
         if ($professional) {
             return response()->json([
                 'status' => 'success',
