@@ -45,6 +45,8 @@
                     @endforeach
                 </ul>
             </li>
+            <li><span class="text-primary-emphasis fw-bolder">Descrizione : </span>
+                {{ $professional->performance ?: 'Nessuna descrizione inserita' }}</li>
 
         </ul>
 

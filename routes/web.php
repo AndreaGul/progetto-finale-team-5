@@ -3,8 +3,12 @@
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\ProfessionalController;
 use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\SponsorizationController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Braintree\Gateway;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +35,19 @@ Route::middleware('auth', 'verified')
         Route::resource('info', ProfessionalController::class);
         Route::resource('messages', MessageController::class);
         Route::resource('reviews', ReviewController::class);
+        Route::get('sponsorization', [SponsorizationController::class, 'index'])->name('sponsorization');
+        Route::get('/checkout', function () {
+            $gateway = new Gateway([
+                'environment' => env('BRAINTREE_ENV'),
+                'merchantId' => env('BRAINTREE_MERCHANT_ID'),
+                'publicKey' => env('BRAINTREE_PUBLIC_KEY'),
+                'privateKey' => env('BRAINTREE_PRIVATE_KEY')
+            ]);
+
+            $clientToken = $gateway->clientToken()->generate();
+
+            return view('admin.payment.checkout', compact('clientToken'))->with('request', request());
+        })->name('prova');
+        Route::post('/checkout', [PaymentController::class, 'checkout'])->name('checkout');
     });
 require __DIR__ . '/auth.php';
