@@ -16,78 +16,134 @@ class ProfessionalController extends Controller
 {
     public function index()
     {
-        try {
-            request()->validate([
-                'specialization_id' => ['exists:specializations,id'],
-                'vote' => ['nullable', 'numeric'],
-                'review' => ['nullable', 'numeric'],
-            ]);
-        } catch (ValidationException $e) {
-            return response()->json(
-                [
-                    'status' => 'failed',
-                    'error' => $e->errors()
-                ],
-                422
-            );
-        }
-
-        $specializations = Specialization::pluck('id')->toArray();
-        $specialization_id = request()->specialization_id;
-        $review = request()->review;
-        $vote = request()->vote;
-        if (in_array($specialization_id, $specializations)) {
-            // se ci sono id validi | mostra solo l'ultima sponsorizzazione e solo se la data di fine è maggiore
-            $current_time = now(); // data e ora
-            $professionals = Professional::whereHas('specializations', function ($query) use ($specialization_id) {
-                $query->where('id', $specialization_id);
-            })->with(['user', 'votes', 'reviews', 'specializations', 'sponsorizations' => function ($query) use ($current_time) {
-                $query->withPivot('professional_id', 'sponsorization_id', 'date_end_sponsorization')->where('date_end_sponsorization', '>', $current_time)->orderBy('date_end_sponsorization', 'desc');
-            }])->withCount('reviews')->withCount(['votes as average_rating' => function ($query) {
-                $query->select(DB::raw('coalesce(avg(lookup_id), 0)'));
-            }])->get();
-
-            // mostra prima chi è sponsorizzato
-            $professionalsSponsored = $professionals->filter(function ($professional) {
-                // sponsorizzati
-                return $professional->sponsorizations->isNotEmpty();
-            });
-            $professionalsNotSponsored = $professionals->filter(function ($professional) {
-                // non sponsorizzati
-                return $professional->sponsorizations->isEmpty();
-            });
-            // unisce gli oggetti
-            $professionals = $professionalsSponsored->merge($professionalsNotSponsored);
-
-            if ($review && $vote) {
-                // tutto
-                $professionals = $professionals->filter(function ($professional) use ($review) {
-                    return $professional->reviews_count >= $review;
-                });
-                $professionals = $professionals->filter(function ($professional) use ($vote) {
-                    return $professional->average_rating >= $vote;
-                });
-            } elseif ($review) {
-                // solo in base alle recensioni
-                $professionals = $professionals->filter(function ($professional) use ($review) {
-                    return $professional->reviews_count >= $review;
-                });
-            } elseif ($vote) {
-                // solo in base alla media dei voti
-                $professionals = $professionals->filter(function ($professional) use ($vote) {
-                    return $professional->average_rating >= $vote;
-                });
+        if (is_numeric(request()->specialization_id)) {
+            //specialization_id è l'id riferito alla specializzazione
+            try {
+                request()->validate([
+                    'specialization_id' => ['exists:specializations,id'],
+                    'vote' => ['nullable', 'numeric'],
+                    'review' => ['nullable', 'numeric'],
+                ]);
+            } catch (ValidationException $e) {
+                return response()->json(
+                    [
+                        'status' => 'failed',
+                        'error' => $e->errors()
+                    ],
+                    422
+                );
             }
 
-            return response()->json([
-                'status' => 'successo',
-                'data' => $professionals
-            ]);
+            $specializations = Specialization::pluck('id')->toArray();
+            $specialization_id = request()->specialization_id;
+            $review = request()->review;
+            $vote = request()->vote;
+            if (in_array($specialization_id, $specializations)) {
+                // se ci sono id validi | mostra solo l'ultima sponsorizzazione e solo se la data di fine è maggiore
+                $current_time = now(); // data e ora
+                $professionals = Professional::whereHas('specializations', function ($query) use ($specialization_id) {
+                    $query->where('id', $specialization_id);
+                })->with(['user', 'votes', 'reviews', 'specializations', 'sponsorizations' => function ($query) use ($current_time) {
+                    $query->withPivot('professional_id', 'sponsorization_id', 'date_end_sponsorization')->where('date_end_sponsorization', '>', $current_time)->orderBy('date_end_sponsorization', 'desc')->limit(1);
+                }])->withCount('reviews')->withCount(['votes as average_rating' => function ($query) {
+                    $query->select(DB::raw('coalesce(avg(lookup_id), 0)'));
+                }])->get();
+
+
+                if ($review && $vote) {
+                    // tutto
+                    $professionals = $professionals->filter(function ($professional) use ($review) {
+                        return $professional->reviews_count >= $review;
+                    });
+                    $professionals = $professionals->filter(function ($professional) use ($vote) {
+                        return $professional->average_rating >= $vote;
+                    });
+                } elseif ($review) {
+                    // solo in base alle recensioni
+                    $professionals = $professionals->filter(function ($professional) use ($review) {
+                        return $professional->reviews_count >= $review;
+                    });
+                } elseif ($vote) {
+                    // solo in base alla media dei voti
+                    $professionals = $professionals->filter(function ($professional) use ($vote) {
+                        return $professional->average_rating >= $vote;
+                    });
+                }
+
+                return response()->json([
+                    'status' => 'successo',
+                    'data' => $professionals
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 'errore',
+                    'data' => 'id non valido'
+                ]);
+            }
         } else {
-            return response()->json([
-                'status' => 'errore',
-                'data' => 'id non valido'
-            ]);
+            //specialization_id è il nome della specializzazione
+            try {
+                request()->validate([
+                    'specialization_id' => ['exists:specializations,name'],
+                    'vote' => ['nullable', 'numeric'],
+                    'review' => ['nullable', 'numeric'],
+                ]);
+            } catch (ValidationException $e) {
+                return response()->json(
+                    [
+                        'status' => 'failed',
+                        'error' => $e->errors()
+                    ],
+                    422
+                );
+            }
+
+            $specializations = Specialization::pluck('name')->toArray();
+            $specialization_name = request()->specialization_id;
+            $review = request()->review;
+            $vote = request()->vote;
+            if (in_array($specialization_name, $specializations)) {
+                // se ci sono id validi | mostra solo l'ultima sponsorizzazione e solo se la data di fine è maggiore
+                $current_time = now(); // data e ora
+                $professionals = Professional::whereHas('specializations', function ($query) use ($specialization_name) {
+                    $query->where('name', $specialization_name);
+                })->with(['user', 'votes', 'reviews', 'specializations', 'sponsorizations' => function ($query) use ($current_time) {
+                    $query->withPivot('professional_id', 'sponsorization_id', 'date_end_sponsorization')->where('date_end_sponsorization', '>', $current_time)->orderBy('date_end_sponsorization', 'desc')->limit(1);
+                }])->withCount('reviews')->withCount(['votes as average_rating' => function ($query) {
+                    $query->select(DB::raw('coalesce(avg(lookup_id), 0)'));
+                }])->get();
+
+
+                if ($review && $vote) {
+                    // tutto
+                    $professionals = $professionals->filter(function ($professional) use ($review) {
+                        return $professional->reviews_count >= $review;
+                    });
+                    $professionals = $professionals->filter(function ($professional) use ($vote) {
+                        return $professional->average_rating >= $vote;
+                    });
+                } elseif ($review) {
+                    // solo in base alle recensioni
+                    $professionals = $professionals->filter(function ($professional) use ($review) {
+                        return $professional->reviews_count >= $review;
+                    });
+                } elseif ($vote) {
+                    // solo in base alla media dei voti
+                    $professionals = $professionals->filter(function ($professional) use ($vote) {
+                        return $professional->average_rating >= $vote;
+                    });
+                }
+
+                return response()->json([
+                    'status' => 'successo',
+                    'data' => $professionals
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 'errore',
+                    'data' => 'id non valido'
+                ]);
+            }
         }
     }
 
