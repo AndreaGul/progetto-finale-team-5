@@ -9,6 +9,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h3 class="card-title"> {{ $message->name }}</h3>
+                            <span>{{  date("d/m/Y". ' \a\l\l\e ' ."H:m", strtotime($message->updated_at)) }}</span>
                             <h5> {{ $message->sender_email }}</h5>
                             {{ $message->message }}
                         </div>

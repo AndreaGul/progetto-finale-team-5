@@ -9,6 +9,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h3 class="card-title"> {{ $review->name_reviewer }}</h3>
+                            <span>{{  date("d/m/Y". ' \a\l\l\e ' ."H:m", strtotime($review->updated_at)) }}</span>
                             <h5> {{ $review->email_reviewer }}</h5>
                             {{ $review->review }}
                         </div>

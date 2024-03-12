@@ -5,7 +5,7 @@
 
         @if ($sponsorization)
             <h1>Sei sponsorizzato!</h1>
-            <p>La tua sponsorizzazione scade il: {{ $sponsorization['pivot_date_end_sponsorization'] }}</p>
+            <p>La tua sponsorizzazione scade il: {{ date("d/m/Y". ' \a\l\l\e ' . "H:i", strtotime($sponsorization['pivot_date_end_sponsorization'])) }}</p>
         @else
             <h1>Non sei sponsorizzato, scegli uno dei seguenti piani</h1>
 
