@@ -37,7 +37,7 @@ class PaymentController extends Controller
             // $professional->sponsorizations()->sync(['professional_id' => $professional->id, 'sponsorization_id' => $sponsorization->id, 'date_end_sponsorization' => $prova]);
             $professional->sponsorizations()->attach($sponsorization->id, ['date_end_sponsorization' => $prova]);
 
-            return 'Pagamento effettuato con successo!';
+            return view('admin.payment.completed');
         } else {
             return 'Errore durante il pagamento: ' . $result->message;
         }
