@@ -7,8 +7,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Professional;
 use App\Http\Requests\StoreProfessionalRequest;
 use App\Http\Requests\UpdateProfessionalRequest;
+use App\Models\Message;
+use App\Models\Review;
 use App\Models\Specialization;
 use App\Models\User;
+use App\Models\Vote;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ProfessionalController extends Controller
@@ -22,7 +26,34 @@ class ProfessionalController extends Controller
 
         $professional = Professional::where('user_id', Auth::id())->first();
 
-        return view('admin.professionals.index', compact('user', 'professional'));
+        $messagesCountByMonth = Message::select(DB::raw('MONTH(created_at) as month'), DB::raw('YEAR(created_at) as year'), DB::raw('COUNT(*) as total'))
+        ->where('professional_id', Auth::id())
+        ->whereYear('created_at', date('Y'))
+        ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
+        ->get();
+        $reviewsCountByMonth = Review::select(DB::raw('MONTH(created_at) as month'), DB::raw('YEAR(created_at) as year'), DB::raw('COUNT(*) as total'))
+        ->where('professional_id', Auth::id())
+        ->whereYear('created_at', date('Y'))
+        ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
+        ->get();
+        $votesCountByMonth = Vote::select(DB::raw('MONTH(created_at) as month'), DB::raw('YEAR(created_at) as year'), DB::raw('COUNT(*) as total'))
+        ->where('professional_id', Auth::id())
+        ->whereYear('created_at', date('Y'))
+        ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
+        ->get();
+        $monthlyMessageCounts = array_fill(1, 12, 0);
+        foreach ($messagesCountByMonth as $messageCount) {
+            $monthlyMessageCounts[$messageCount->month] = $messageCount->total;
+        }
+        $monthlyReviewCounts = array_fill(1, 12, 0);
+        foreach ($reviewsCountByMonth as $reviewCount) {
+            $monthlyReviewCounts[$reviewCount->month] = $reviewCount->total;
+        }
+        $monthlyVoteCounts = array_fill(1, 12, 0);
+        foreach ($votesCountByMonth as $voteCount) {
+            $monthlyVoteCounts[$voteCount->month] = $voteCount->total;
+        }
+        return view('admin.professionals.index', compact('user', 'professional', 'monthlyMessageCounts', 'monthlyReviewCounts', 'monthlyVoteCounts'));
     }
 
     /**
