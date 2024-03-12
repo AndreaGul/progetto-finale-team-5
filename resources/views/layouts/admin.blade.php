@@ -61,7 +61,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.info.index' ? 'bg-primary' : '' }}"
                                     href="{{ route('admin.info.index') }}">
-                                    <i class="fa-solid fa-tachometer-alt fa-lg fa-fw"></i> Info
+                                    <i class="fa-regular fa-user fa-lg fa-fw"></i> Info
                                 </a>
 
                             </li>
@@ -82,7 +82,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white {{ Route::currentRouteName() == 'admin.sponsorization' ? 'bg-primary' : '' }}"
                                     href="{{ route('admin.sponsorization') }}">
-                                    <i class="fa-regular fa-comment fa-lg fa-fw"></i> Sponsorizzazioni
+                                    <i class="fa-solid fa-bullhorn fa-lg fa-fw"></i> Sponsorizzazioni
                                 </a>
 
                             </li>
