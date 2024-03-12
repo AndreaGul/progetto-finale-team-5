@@ -37,7 +37,7 @@ class PaymentController extends Controller
             // $professional->sponsorizations()->sync(['professional_id' => $professional->id, 'sponsorization_id' => $sponsorization->id, 'date_end_sponsorization' => $prova]);
             $professional->sponsorizations()->attach($sponsorization->id, ['date_end_sponsorization' => $prova]);
 
-            return view('admin.payment.completed');
+            return redirect()->route('admin.sponsorization')->with('acquistato', true);
         } else {
             return 'Errore durante il pagamento: ' . $result->message;
         }

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container d-flex align-items-end flex-wrap">
-        <h1 class="text-primary mt-3 col-12">Info</h1>
+        <h1 class="text-primary mt-3 col-12 text-center">Info</h1>
         <div class="left col-4">
             <ul class="list-unstyled">
 

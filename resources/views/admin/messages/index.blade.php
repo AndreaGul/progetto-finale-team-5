@@ -1,7 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h1 class="text-primary mt-3">Messaggi</h1>
+<div class="container">
+    <h1 class="text-primary mt-3 text-center">Messaggi</h1>
     @if ($messages->count())
         <ul class="list-unstyled">
             @foreach ($messages as $message)
@@ -22,4 +23,5 @@
             Non ci sono messaggi!
         </div>
     @endif
+</div>
 @endsection
