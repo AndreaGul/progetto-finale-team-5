@@ -49,7 +49,7 @@
             </div>
         </header>
 
-        <div class="container-fluid vh-100">
+        <div class="container-fluid" style="height: calc(100vh - 56px)">
             <div class="row h-100">
                 <!-- Definire solo parte del menu di navigazione inizialmente per poi
         aggiungere i link necessari giorno per giorno

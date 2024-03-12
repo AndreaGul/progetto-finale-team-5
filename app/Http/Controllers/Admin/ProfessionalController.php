@@ -26,6 +26,7 @@ class ProfessionalController extends Controller
 
         $professional = Professional::where('user_id', Auth::id())->first();
 
+        // recupera le informazioni
         $messagesCountByMonth = Message::select(DB::raw('MONTH(created_at) as month'), DB::raw('YEAR(created_at) as year'), DB::raw('COUNT(*) as total'))
         ->where('professional_id', Auth::id())
         ->whereYear('created_at', date('Y'))
@@ -41,19 +42,24 @@ class ProfessionalController extends Controller
         ->whereYear('created_at', date('Y'))
         ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
         ->get();
+        $maxHeight = 0;
+        //crea un array che contiene i valori per ogni mese
         $monthlyMessageCounts = array_fill(1, 12, 0);
         foreach ($messagesCountByMonth as $messageCount) {
             $monthlyMessageCounts[$messageCount->month] = $messageCount->total;
+            if($messageCount->total > $maxHeight)$maxHeight = $messageCount->total;
         }
         $monthlyReviewCounts = array_fill(1, 12, 0);
         foreach ($reviewsCountByMonth as $reviewCount) {
             $monthlyReviewCounts[$reviewCount->month] = $reviewCount->total;
+            if($reviewCount->total > $maxHeight)$maxHeight = $reviewCount->total;
         }
         $monthlyVoteCounts = array_fill(1, 12, 0);
         foreach ($votesCountByMonth as $voteCount) {
             $monthlyVoteCounts[$voteCount->month] = $voteCount->total;
+            if($voteCount->total > $maxHeight)$maxHeight = $voteCount->total;
         }
-        return view('admin.professionals.index', compact('user', 'professional', 'monthlyMessageCounts', 'monthlyReviewCounts', 'monthlyVoteCounts'));
+        return view('admin.professionals.index', compact('user', 'professional', 'monthlyMessageCounts', 'monthlyReviewCounts', 'monthlyVoteCounts', 'maxHeight'));
     }
 
     /**

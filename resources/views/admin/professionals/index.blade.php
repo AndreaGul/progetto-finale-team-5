@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <div class="container d-flex align-items-end flex-wrap">
         <h1 class="text-primary mt-3 col-12">Info</h1>
         <div class="left col-4">
@@ -71,54 +70,54 @@
             datasets: [{
               label: 'messaggi',
               data: [
-                '<?php echo $monthlyMessageCounts[1] ?>',
-                '<?php echo $monthlyMessageCounts[2] ?>',
-                '<?php echo $monthlyMessageCounts[3] ?>',
-                '<?php echo $monthlyMessageCounts[4] ?>',
-                '<?php echo $monthlyMessageCounts[5] ?>',
-                '<?php echo $monthlyMessageCounts[6] ?>',
-                '<?php echo $monthlyMessageCounts[7] ?>',
-                '<?php echo $monthlyMessageCounts[8] ?>',
-                '<?php echo $monthlyMessageCounts[9] ?>',
-                '<?php echo $monthlyMessageCounts[10] ?>',
-                '<?php echo $monthlyMessageCounts[11] ?>',
-                '<?php echo $monthlyMessageCounts[12] ?>',
+                {{ $monthlyMessageCounts[1] }},
+                {{ $monthlyMessageCounts[2] }},
+                {{ $monthlyMessageCounts[3] }},
+                {{ $monthlyMessageCounts[4] }},
+                {{ $monthlyMessageCounts[5] }},
+                {{ $monthlyMessageCounts[6] }},
+                {{ $monthlyMessageCounts[7] }},
+                {{ $monthlyMessageCounts[8] }},
+                {{ $monthlyMessageCounts[9] }},
+                {{ $monthlyMessageCounts[10] }},
+                {{ $monthlyMessageCounts[11] }},
+                {{ $monthlyMessageCounts[12] }},
             ],
               borderWidth: 1
             },
             {
               label: 'recensioni',
               data: [
-                '<?php echo $monthlyReviewCounts[1] ?>',
-                '<?php echo $monthlyReviewCounts[2] ?>',
-                '<?php echo $monthlyReviewCounts[3] ?>',
-                '<?php echo $monthlyReviewCounts[4] ?>',
-                '<?php echo $monthlyReviewCounts[5] ?>',
-                '<?php echo $monthlyReviewCounts[6] ?>',
-                '<?php echo $monthlyReviewCounts[7] ?>',
-                '<?php echo $monthlyReviewCounts[8] ?>',
-                '<?php echo $monthlyReviewCounts[9] ?>',
-                '<?php echo $monthlyReviewCounts[10] ?>',
-                '<?php echo $monthlyReviewCounts[11] ?>',
-                '<?php echo $monthlyReviewCounts[12] ?>',
+                {{ $monthlyReviewCounts[1] }},
+                {{ $monthlyReviewCounts[2] }},
+                {{ $monthlyReviewCounts[3] }},
+                {{ $monthlyReviewCounts[4] }},
+                {{ $monthlyReviewCounts[5] }},
+                {{ $monthlyReviewCounts[6] }},
+                {{ $monthlyReviewCounts[7] }},
+                {{ $monthlyReviewCounts[8] }},
+                {{ $monthlyReviewCounts[9] }},
+                {{ $monthlyReviewCounts[10] }},
+                {{ $monthlyReviewCounts[11] }},
+                {{ $monthlyReviewCounts[12] }},
             ],
               borderWidth: 1
             },
             {
               label: 'voti',
               data: [
-                '<?php echo $monthlyVoteCounts[1] ?>',
-                '<?php echo $monthlyVoteCounts[2] ?>',
-                '<?php echo $monthlyVoteCounts[3] ?>',
-                '<?php echo $monthlyVoteCounts[4] ?>',
-                '<?php echo $monthlyVoteCounts[5] ?>',
-                '<?php echo $monthlyVoteCounts[6] ?>',
-                '<?php echo $monthlyVoteCounts[7] ?>',
-                '<?php echo $monthlyVoteCounts[8] ?>',
-                '<?php echo $monthlyVoteCounts[9] ?>',
-                '<?php echo $monthlyVoteCounts[10] ?>',
-                '<?php echo $monthlyVoteCounts[11] ?>',
-                '<?php echo $monthlyVoteCounts[12] ?>',
+                {{ $monthlyVoteCounts[1] }},
+                {{ $monthlyVoteCounts[2] }},
+                {{ $monthlyVoteCounts[3] }},
+                {{ $monthlyVoteCounts[4] }},
+                {{ $monthlyVoteCounts[5] }},
+                {{ $monthlyVoteCounts[6] }},
+                {{ $monthlyVoteCounts[7] }},
+                {{ $monthlyVoteCounts[8] }},
+                {{ $monthlyVoteCounts[9] }},
+                {{ $monthlyVoteCounts[10] }},
+                {{ $monthlyVoteCounts[11] }},
+                {{ $monthlyVoteCounts[12] }},
             ],
               borderWidth: 1
             }
@@ -130,7 +129,8 @@
                 beginAtZero: true,
                 ticks: {
                     stepSize: 1
-                }
+                },
+                max: {{ $maxHeight + 1 }}
               }
             }
           }
