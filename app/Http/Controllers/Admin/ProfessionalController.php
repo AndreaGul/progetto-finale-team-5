@@ -28,17 +28,17 @@ class ProfessionalController extends Controller
 
         // recupera le informazioni
         $messagesCountByMonth = Message::select(DB::raw('MONTH(created_at) as month'), DB::raw('YEAR(created_at) as year'), DB::raw('COUNT(*) as total'))
-        ->where('professional_id', Auth::id())
+        ->where('professional_id', $professional->id)
         ->whereYear('created_at', date('Y'))
         ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
         ->get();
         $reviewsCountByMonth = Review::select(DB::raw('MONTH(created_at) as month'), DB::raw('YEAR(created_at) as year'), DB::raw('COUNT(*) as total'))
-        ->where('professional_id', Auth::id())
+        ->where('professional_id', $professional->id)
         ->whereYear('created_at', date('Y'))
         ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
         ->get();
         $votesCountByMonth = Vote::select(DB::raw('MONTH(created_at) as month'), DB::raw('YEAR(created_at) as year'), DB::raw('COUNT(*) as total'))
-        ->where('professional_id', Auth::id())
+        ->where('professional_id', $professional->id)
         ->whereYear('created_at', date('Y'))
         ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
         ->get();
