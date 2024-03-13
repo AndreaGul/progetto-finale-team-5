@@ -14,12 +14,14 @@ class SponsorizationController extends Controller
     public function index()
     {
         $current_time = now();
-        $resultati = Professional::where('id', Auth::id())
+        $resultati = Professional::where('user_id', Auth::id())
             ->with(['sponsorizations' => function ($query) use ($current_time) {
                 $query->withPivot('professional_id', 'sponsorization_id', 'date_end_sponsorization')->where('date_end_sponsorization', '>', $current_time)
                     ->orderBy('date_end_sponsorization', 'desc');
             }])
             ->get();
+
+           
         if ($resultati[0]->sponsorizations->isEmpty()) {
             $sponsorization = null;
         } else {
