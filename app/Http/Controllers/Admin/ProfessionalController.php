@@ -22,6 +22,7 @@ class ProfessionalController extends Controller
      */
     public function index()
     {
+        // informazioni singolo utente
         $user = User::find(Auth::id());
 
         $professional = Professional::where('user_id', Auth::id())->first();
@@ -91,6 +92,7 @@ class ProfessionalController extends Controller
      */
     public function edit($professional)
     {
+        // pagina modifica utente
         if(Auth::id() != $professional)return redirect()->route('home');
         $user = User::find(Auth::id());
 
@@ -105,10 +107,9 @@ class ProfessionalController extends Controller
      */
     public function update(UpdateProfessionalRequest $request, $user)
     {
+        // modifica utente
         $data = $request->validated();
-        // dd($data);
-
-
+        
         $new_user =  User::find($user);
 
         $new_user->update($data);

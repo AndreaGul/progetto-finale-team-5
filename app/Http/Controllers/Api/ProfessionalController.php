@@ -291,6 +291,7 @@ class ProfessionalController extends Controller
 
     public function sponsored()
     {
+        // mostra solo sponsorizzati
         $current_time = now(); // data e ora
         $professionals = Professional::with(['user', 'votes', 'reviews', 'specializations', 'sponsorizations' => function ($query) use ($current_time) {
             $query->withPivot('professional_id', 'sponsorization_id', 'date_end_sponsorization')->where('date_end_sponsorization', '>', $current_time)->orderBy('date_end_sponsorization', 'desc');

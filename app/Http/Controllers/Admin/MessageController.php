@@ -16,6 +16,7 @@ class MessageController extends Controller
      */
     public function index()
     {
+        // mostra tutti i messaggi
         $professional_id = Professional::where('user_id', Auth::id())->first()->id;
         $messages = Message::all()->where('professional_id', $professional_id);
         return view('admin.messages.index', compact('messages'));

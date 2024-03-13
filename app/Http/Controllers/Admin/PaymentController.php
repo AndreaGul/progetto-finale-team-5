@@ -34,7 +34,6 @@ class PaymentController extends Controller
             $professional = Professional::where('user_id', Auth::id())->first();
             $sponsorization = Sponsorization::where('price', $request->input('price'))->first();
             $prova = date("Y-m-d H:i:s", strtotime(now() . '+ ' . $sponsorization->hours . ' hours'));
-            // $professional->sponsorizations()->sync(['professional_id' => $professional->id, 'sponsorization_id' => $sponsorization->id, 'date_end_sponsorization' => $prova]);
             $professional->sponsorizations()->attach($sponsorization->id, ['date_end_sponsorization' => $prova]);
 
             return redirect()->route('admin.sponsorization')->with('acquistato', true);

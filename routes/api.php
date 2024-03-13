@@ -17,15 +17,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//http://127.0.0.1:8000/api/user
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return '$request->user()';
-});
-
-//http://127.0.0.1:8000/api/professionals/1,4
+//http://127.0.0.1:8000/api/professionals/?specialization_id=&vote=&review=
 Route::get('professionals', [ProfessionalController::class, 'index']);
 
 //http://127.0.0.1:8000/api/professionals/show/1
+//http://127.0.0.1:8000/api/professionals/show/slug
 Route::get('professionals/show/{id}', [ProfessionalController::class, 'show']);
 
 //http://127.0.0.1:8000/api/professionals/message
@@ -37,20 +33,8 @@ Route::post('professionals/review', [ProfessionalController::class, 'addReview']
 //http://127.0.0.1:8000/api/professionals/vote
 Route::post('professionals/vote', [ProfessionalController::class, 'addVote']);
 
+//http://127.0.0.1:8000/api/professionals/sponsored
 Route::get('professionals/sponsored', [ProfessionalController::class, 'sponsored']);
 
 //http://127.0.0.1:8000/api/specializations
 Route::get('specializations', [SpecializationController::class, 'index']);
-
-
-
-/*
-use Illuminate\Support\Facades\Auth;
-
-
-Route::get('/userLoggedIn', function (Request $request) {
-    return response()->json([
-        'loggedIn' => Auth::check()
-    ]);
-});
-*/

@@ -13,6 +13,7 @@ class SponsorizationController extends Controller
 {
     public function index()
     {
+        //gestione della sponsorizzazione
         $current_time = now();
         $resultati = Professional::where('user_id', Auth::id())
             ->with(['sponsorizations' => function ($query) use ($current_time) {
@@ -20,7 +21,6 @@ class SponsorizationController extends Controller
                     ->orderBy('date_end_sponsorization', 'desc');
             }])
             ->get();
-
            
         if ($resultati[0]->sponsorizations->isEmpty()) {
             $sponsorization = null;

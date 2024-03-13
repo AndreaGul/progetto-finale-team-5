@@ -15,6 +15,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
+        // mostra tutte le recensioni
         $professional_id = Professional::where('user_id', Auth::id())->first()->id;
         $reviews = Review::all()->where('professional_id', $professional_id);
         return view('admin.reviews.index', compact('reviews'));
