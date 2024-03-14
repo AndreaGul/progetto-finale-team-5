@@ -6,12 +6,41 @@ body {
     font-style: normal;
 }
 
-.user-img {
-    width: 100px;
-}
+//immagine info utente
+// .user-img {
+//     width: 100px;
+//     border-radius: 5px;
+// }
 
 // navbar layout admin
 .navbar-brand {
     font-size: 20px;
+    font-weight: 600;
+}
+
+//navbar - sidebar color
+.navbar,
+.bg-sidebar {
+    background-color: #022b3a;
+}
+
+//sidebar color when active
+.bg-sidebar-active {
+    background-color: #1f7a8c;
+}
+
+.title-color {
+    color: #1f7a8c;
+}
+
+.title-secondary-color {
+    color: #022b3a;
+}
+
+.btn-color {
+    background-color: #1f7a8c;
+}
+
+.title-bold {
     font-weight: 600;
 }
