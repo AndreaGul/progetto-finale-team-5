@@ -12,8 +12,8 @@
                             @csrf
 
                             <div class="mb-4 row">
-                                <label for="name"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Nome') }} <span class="text-danger">*</span></label>
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nome') }} <span
+                                        class="text-danger">*</span></label>
 
 
                                 <div class="col-md-6">
@@ -30,8 +30,8 @@
                             </div>
 
                             <div class="mb-4 row">
-                                <label for="surname"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Cognome') }} <span class="text-danger">*</span></label>
+                                <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Cognome') }}
+                                    <span class="text-danger">*</span></label>
 
 
                                 <div class="col-md-6">
@@ -48,8 +48,52 @@
                             </div>
 
                             <div class="mb-4 row">
-                                <label for="email"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }} <span class="text-danger">*</span></label>
+                                <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Indirizzo') }}
+                                    <span class="text-danger">*</span></label>
+
+
+                                <div class="col-md-6">
+                                    <input id="address" type="text"
+                                        class="form-control @error('address') is-invalid @enderror" name="address"
+                                        value="{{ old('address') }}" required autocomplete="address" autofocus>
+
+                                    @error('address')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="mb-4 row">
+                                <label for="specializations"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Specializzazioni') }}
+                                    <span class="text-danger">*</span></label>
+                                <div class="col-md-6">
+                                    @foreach ($specializations as $specialization)
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox"
+                                                id="spec-{{ $specialization->id }}" name="specializations[]"
+                                                value="{{ $specialization->id }}"
+                                                {{ in_array($specialization->id, old('specializations', [])) ? 'checked' : '' }}>
+                                            <label class="form-check-label"
+                                                for="tech-{{ $specialization->id }}">{{ $specialization->name }}</label>
+                                        </div>
+                                    @endforeach
+
+                                    <p class="text-danger d-none" id="error-specializations"></p>
+                                    @error('specializations')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+
+                            <div class="mb-4 row">
+                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}
+                                    <span class="text-danger">*</span></label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email"
@@ -65,14 +109,14 @@
                             </div>
 
                             <div class="mb-4 row">
-                                <label for="password"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Password') }} <span class="text-danger">*</span></label>
+                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}
+                                    <span class="text-danger">*</span></label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password"
                                         class="form-control @error('password') is-invalid @enderror" name="password"
                                         required autocomplete="new-password">
-                                        <p class="text-danger  d-none" id="error-text"></p>
+                                    <p class="text-danger  d-none" id="error-text"></p>
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ 'Le password sono diverse' }}</strong>
@@ -83,7 +127,8 @@
 
                             <div class="mb-4 row">
                                 <label for="password-confirm"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }} <span class="text-danger">*</span></label>
+                                    class="col-md-4 col-form-label text-md-right">{{ __('Conferma Password') }} <span
+                                        class="text-danger">*</span></label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
