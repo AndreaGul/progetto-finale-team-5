@@ -49,7 +49,7 @@ class ProfessionalController extends Controller
                     $query->select(DB::raw('coalesce(avg(lookup_id), 0)'));
                 }])->get();
 
-                 // mostra prima chi è sponsorizzato
+                // mostra prima chi è sponsorizzato
                 $professionalsSponsored = $professionals->filter(function ($professional) {
                     // sponsorizzati
                     return $professional->sponsorizations->isNotEmpty();
@@ -125,8 +125,8 @@ class ProfessionalController extends Controller
                     $query->select(DB::raw('coalesce(avg(lookup_id), 0)'));
                 }])->get();
 
-                 // mostra prima chi è sponsorizzato
-                 $professionalsSponsored = $professionals->filter(function ($professional) {
+                // mostra prima chi è sponsorizzato
+                $professionalsSponsored = $professionals->filter(function ($professional) {
                     // sponsorizzati
                     return $professional->sponsorizations->isNotEmpty();
                 });
@@ -297,16 +297,19 @@ class ProfessionalController extends Controller
             $query->withPivot('professional_id', 'sponsorization_id', 'date_end_sponsorization')->where('date_end_sponsorization', '>', $current_time)->orderBy('date_end_sponsorization', 'desc');
         }])->withCount('reviews')->withCount(['votes as average_rating' => function ($query) {
             $query->select(DB::raw('coalesce(avg(lookup_id), 0)'));
-        }])->get();
-        
-        $professionalsSponsored = $professionals->filter(function ($professional) {
-            // sponsorizzati
-            return $professional->sponsorizations->isNotEmpty();
+        }]);
+
+        // Applica la logica di filtro
+        $professionalsSponsored = $professionals->whereHas('sponsorizations', function ($query) {
+            $query->where('date_end_sponsorization', '>', now()); // Filtra solo i professionisti sponsorizzati
         });
+
+        // Ora puoi paginare i risultati
+        $professionalsPaginated = $professionalsSponsored->paginate(3);
         if ($professionals) {
             return response()->json([
                 'status' => 'success',
-                'data' => $professionalsSponsored
+                'data' => $professionalsPaginated
             ]);
         } else {
             return response()->json([
