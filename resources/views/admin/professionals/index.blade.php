@@ -62,11 +62,24 @@
       
       <script>
         const ctx = document.getElementById('myChart');
+        const months = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
+        // ordina i mesi (ultimi 12)
+        const currentMonth = new Date().getMonth();
+        const thisYearMonths = [];
+        const lastYearMonths = [];
+        months.forEach((element, key) => {
+          if(key <= currentMonth){
+            thisYearMonths.push(element);
+          }else{
+            lastYearMonths.push(element);
+          }
+        });
+        const orderMonths = lastYearMonths.concat(thisYearMonths);
       
         new Chart(ctx, {
           type: 'bar',
           data: {
-            labels: ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'],
+            labels: orderMonths,
             datasets: [{
               label: 'messaggi',
               data: [
