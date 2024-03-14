@@ -31,7 +31,7 @@
                     <label>
                         <input @if ($key == 0) checked @endif type="radio" name="scelta"
                             value="{{ $sponsorization->price }}">
-                        {{ $sponsorization->hours }} ore, al costo di {{ $sponsorization->price }}$
+                        {{ $sponsorization->hours }} ore, al costo di {{ $sponsorization->price }} €
                     </label><br>
                 @endforeach
                 <button type="submit" class="btn btn-primary col-12 mt-2">vai al pagamento</button>
