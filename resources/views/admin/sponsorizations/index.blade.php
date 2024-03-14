@@ -4,10 +4,11 @@
     <div class="container d-flex flex-wrap justify-content-center">
 
         <h1 class="mt-3 text-primary col-12 text-center">Sponsorizzazioni</h1>
-        @if(session('acquistato'))
+        @if(!session('acquistato'))
         <div class="col-12">
             <div class="toast show m-auto">
-                <div class="toast-header d-flex justify-content-end">
+                <div class="toast-header d-flex justify-content-between">
+                    Conferma Pagamento
                   <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
                 </div>
                 <div class="toast-body">    
