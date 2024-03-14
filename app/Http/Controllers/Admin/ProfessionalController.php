@@ -30,34 +30,46 @@ class ProfessionalController extends Controller
         // recupera le informazioni
         $messagesCountByMonth = Message::select(DB::raw('MONTH(created_at) as month'), DB::raw('YEAR(created_at) as year'), DB::raw('COUNT(*) as total'))
         ->where('professional_id', $professional->id)
-        ->whereYear('created_at', date('Y'))
+        ->whereBetween('created_at', [now()->subMonths(12), now()])
         ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
         ->get();
         $reviewsCountByMonth = Review::select(DB::raw('MONTH(created_at) as month'), DB::raw('YEAR(created_at) as year'), DB::raw('COUNT(*) as total'))
         ->where('professional_id', $professional->id)
-        ->whereYear('created_at', date('Y'))
+        ->whereBetween('created_at', [now()->subMonths(12), now()])
         ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
         ->get();
         $votesCountByMonth = Vote::select(DB::raw('MONTH(created_at) as month'), DB::raw('YEAR(created_at) as year'), DB::raw('COUNT(*) as total'))
         ->where('professional_id', $professional->id)
-        ->whereYear('created_at', date('Y'))
+        ->whereBetween('created_at', [now()->subMonths(12), now()])
         ->groupBy(DB::raw('YEAR(created_at)'), DB::raw('MONTH(created_at)'))
         ->get();
         $maxHeight = 0;
         //crea un array che contiene i valori per ogni mese
         $monthlyMessageCounts = array_fill(1, 12, 0);
         foreach ($messagesCountByMonth as $messageCount) {
-            $monthlyMessageCounts[$messageCount->month] = $messageCount->total;
+            if($messageCount->year < date('Y')){
+                $monthlyMessageCounts[$messageCount->month - date('m')] = $messageCount->total;
+            }else{
+                $monthlyMessageCounts[12 - (date('m') - $messageCount->month)] = $messageCount->total;
+            }
             if($messageCount->total > $maxHeight)$maxHeight = $messageCount->total;
         }
         $monthlyReviewCounts = array_fill(1, 12, 0);
         foreach ($reviewsCountByMonth as $reviewCount) {
-            $monthlyReviewCounts[$reviewCount->month] = $reviewCount->total;
+            if($reviewCount->year < date('Y')){
+                $monthlyReviewCounts[$reviewCount->month - date('m')] = $reviewCount->total;
+            }else{
+                $monthlyReviewCounts[12 - (date('m') - $reviewCount->month)] = $reviewCount->total;
+            }
             if($reviewCount->total > $maxHeight)$maxHeight = $reviewCount->total;
         }
         $monthlyVoteCounts = array_fill(1, 12, 0);
         foreach ($votesCountByMonth as $voteCount) {
-            $monthlyVoteCounts[$voteCount->month] = $voteCount->total;
+            if($voteCount->year < date('Y')){
+                $monthlyVoteCounts[$voteCount->month - date('m')] = $voteCount->total;
+            }else{
+                $monthlyVoteCounts[12 - (date('m') - $voteCount->month)] = $voteCount->total;
+            }
             if($voteCount->total > $maxHeight)$maxHeight = $voteCount->total;
         }
         return view('admin.professionals.index', compact('user', 'professional', 'monthlyMessageCounts', 'monthlyReviewCounts', 'monthlyVoteCounts', 'maxHeight'));
