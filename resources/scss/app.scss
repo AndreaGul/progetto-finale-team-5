@@ -2,9 +2,16 @@
 @import "_partials/reset.scss";
 
 body {
-    //background-image: url("../img/duck.jpg");
+    font-family: "Poppins", sans-serif;
+    font-style: normal;
 }
 
 .user-img {
     width: 100px;
+}
+
+// navbar layout admin
+.navbar-brand {
+    font-size: 20px;
+    font-weight: 600;
 }
