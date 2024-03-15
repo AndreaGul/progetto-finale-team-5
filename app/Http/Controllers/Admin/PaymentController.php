@@ -36,7 +36,7 @@ class PaymentController extends Controller
             $prova = date("Y-m-d H:i:s", strtotime(now() . '+ ' . $sponsorization->hours . ' hours'));
             $professional->sponsorizations()->attach($sponsorization->id, ['date_end_sponsorization' => $prova]);
 
-            return redirect()->route('admin.sponsorization')->with('acquistato', true);
+            return redirect()->route('admin.sponsorization')->with('acquistato', $request->input('price'));
         } else {
             return 'Errore durante il pagamento: ' . $result->message;
         }
