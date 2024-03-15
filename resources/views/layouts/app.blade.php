@@ -14,7 +14,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <link rel="icon" type="image/png" href="{{ asset('BOOLTECHSBROWSER.png') }}">
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 </head>
@@ -48,7 +48,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{env('FRONTEND')}}">{{ __('Home') }}</a>
+                            <a class="nav-link" href="{{ env('FRONTEND') }}">{{ __('Home') }}</a>
                         </li>
                     </ul>
 
