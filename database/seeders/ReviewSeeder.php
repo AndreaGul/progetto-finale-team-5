@@ -59,7 +59,7 @@ class ReviewSeeder extends Seeder
                     $new_review->review = $reviews[$randomReview];
                     $new_review->email_reviewer = $faker->email();
                     $new_review->name_reviewer = $faker->firstNameMale() . ' ' . $faker->lastName();
-                    $dateTime = $faker->dateTimeInInterval('-1 week', '+1 days');
+                    $dateTime = $faker->dateTimeBetween('-8 months', '+1 days');
                     $new_review->created_at = $dateTime;
                     $new_review->updated_at = $dateTime;
                     $new_review->save();

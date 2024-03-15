@@ -17,19 +17,16 @@ class VoteSeeder extends Seeder
     {
         $professionals = Professional::pluck('id');
         foreach($professionals as $professional){
-            $saveVote = rand(0, 3);
-            if($saveVote){
-                $numberVotes = rand(1,25);
-                for($i = 0; $i <= $numberVotes; $i++){
-                    $randomVote = rand(1, 5);
-                    $new_vote = new Vote();
-                    $new_vote->professional_id = $professional;
-                    $new_vote->lookup_id = $randomVote;
-                    $dateTime = $faker->dateTimeInInterval('-1 week', '+1 days');
-                    $new_vote->created_at = $dateTime;
-                    $new_vote->updated_at = $dateTime;
-                    $new_vote->save();
-                }
+            $numberVotes = rand(1,25);
+            for($i = 0; $i <= $numberVotes; $i++){
+                $randomVote = rand(1, 5);
+                $new_vote = new Vote();
+                $new_vote->professional_id = $professional;
+                $new_vote->lookup_id = $randomVote;
+                $dateTime = $faker->dateTimeBetween('-8 months', '+1 days');
+                $new_vote->created_at = $dateTime;
+                $new_vote->updated_at = $dateTime;
+                $new_vote->save();
             }
         }
     }

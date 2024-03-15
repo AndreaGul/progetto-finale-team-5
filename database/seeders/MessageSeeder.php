@@ -62,7 +62,7 @@ class MessageSeeder extends Seeder
                     $new_message->message = $messages[$randomMessage];
                     $new_message->sender_email = $faker->email();
                     $new_message->name = $faker->firstNameMale() . ' ' . $faker->lastName();
-                    $dateTime = $faker->dateTimeInInterval('-1 week', '+1 days');
+                    $dateTime = $faker->dateTimeBetween('-8 months', '+1 days');
                     $new_message->created_at = $dateTime;
                     $new_message->updated_at = $dateTime;
                     $new_message->save();
