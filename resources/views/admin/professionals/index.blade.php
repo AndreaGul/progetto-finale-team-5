@@ -209,10 +209,43 @@
     </script>
 
     <script>
-    const ctx2 = document.getElementById('myChartHorizontal');
+        const newDatasets = [];
+        data.datasets.forEach((element) => {
+            const tempObj = {
+                label: null,
+                data: [],
+                borderWidth: 1,
+                borderColor: null,
+                backgroundColor: null
+            };
+            tempObj.label = element.label;
+            tempObj.data = [
+                element.data[11],
+                element.data[10],
+                element.data[9],
+                element.data[8],
+                element.data[7],
+                element.data[6],
+                element.data[5],
+                element.data[4],
+                element.data[3],
+                element.data[2],
+                element.data[1],
+                element.data[0],
+            ];
+            tempObj.borderColor = element.borderColor;
+            tempObj.backgroundColor = element.backgroundColor;
+            newDatasets.push(tempObj);
+        });
+        const dataHorizontal = {
+            labels: orderMonths.reverse(),
+            datasets: newDatasets
+        }
+
+        const ctx2 = document.getElementById('myChartHorizontal');
         const horizontal = new Chart(ctx2, {
             type: 'bar',
-            data,
+            data: dataHorizontal,
             options: {
                 indexAxis: 'y',
                 scales: {
