@@ -18,6 +18,27 @@ body {
     font-weight: 600;
 }
 
+// dimensioni spazzi presi dal titolo e il logout nell navbar
+.show-home {
+    display: none;
+}
+
+.default-witdh {
+    width: 100px;
+}
+
+@media (min-width: 576px) {
+    .default-witdh {
+        width: 200px;
+    }
+    .hide-home {
+        display: none;
+    }
+    .show-home {
+        display: block;
+    }
+}
+
 //navbar - sidebar color
 .navbar,
 .bg-sidebar {
