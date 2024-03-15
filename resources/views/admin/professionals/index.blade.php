@@ -1,115 +1,97 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container d-flex align-items-start flex-wrap">
-        <h1 class="title-color mt-3 col-12 title-bold">Informazioni personali</h1>
-        {{-- <div class="left col-4">
-            <ul class="list-unstyled">
-
-                <li>
-                    @if (isset($professional->photo) && Storage::exists($professional->photo))
-                        <img src="{{ asset('storage/' . $professional->photo) }}" alt="foto profilo assente" class="user-img">
+    <div class="container text-center text-lg-start">
+        <h1 class="title-color my-3 col-12 title-bold ">Informazioni personali</h1>
+        <div class="row justify-content-center justify-content-lg-start">
+                <div class="card col-lg-6 mb-4 ag-list-container ">
+                
+                    <ul class="list-group list-group-flush ">
+                        <li class="list-group-item no-img">@if (isset($professional->photo) && Storage::exists($professional->photo))
+                        <img src="{{ asset('storage/' . $professional->photo) }}" alt="foto profilo assente"
+                            class="card-img-top user-img ">
                     @elseif(isset($professional->photo))
-                        <img src="{{ $professional->photo }}" alt="foto profilo assente" class="user-img">
+                        <img src="{{ $professional->photo }}" alt="foto profilo assente" class="card-img-top user-img ">
                     @else
                         <img src="https://static.vecteezy.com/ti/vettori-gratis/p3/26530210-moderno-persona-icona-utente-e-anonimo-icona-vettore-vettoriale.jpg"
-                            alt="foto profilo assente" class="user-img">
-                    @endif
-                </li>
-                <li><span class="title-secondary-color fw-bolder">Nome : </span>{{ $user->name }}</li>
-                <li><span class="title-secondary-color fw-bolder">Cognome : </span> {{ $user->surname }}</li>
-                <li><span class="title-secondary-color fw-bolder">Email : </span> {{ $user->email }}</li>
-                <li>
-                    @if (isset($professional->curriculum))
-                        <a class="title-secondary-color fw-bolder" target="_blank"
-                            href="{{ asset('storage/' . $professional->curriculum) }}">Curriculum vitae</a>
-                    @else
-                        <span class="title-secondary-color fw-bolder">Curriculum: </span>assente
-                    @endif
+                            alt="foto profilo assente" class="card-img-top user-img ">
+                    @endif</li>
+                        <li class="list-group-item"><span class="title-secondary-color fw-bolder">Nome : </span>{{ $user->name }}
+                        </li>
+                        <li class="list-group-item"><span class="title-secondary-color fw-bolder">Cognome : </span>
+                            {{ $user->surname }}</li>
+                        <li class="list-group-item"><span class="title-secondary-color fw-bolder">Email : </span>
+                            {{ $user->email }}</li>
+                        <li class="list-group-item">
+                            @if (isset($professional->curriculum))
+                                <a class="title-secondary-color fw-bolder" target="_blank"
+                                    href="{{ asset('storage/' . $professional->curriculum) }}">Curriculum vitae</a>
+                            @else
+                                <span class="title-secondary-color fw-bolder">Curriculum: </span>assente
+                            @endif
 
-                </li>
+                        </li>
 
-                <li><span class="title-secondary-color fw-bolder">Numero telefono: </span>
-                    {{ $professional->phone ?: 'Nessun numero di telefono inserito' }}</li>
-                <li><span class="title-secondary-color fw-bolder">Indirizzo : </span>
-                    {{ $professional->address ?: 'Nessun indirizzio inserito' }}</li>
-                <li><span class="title-secondary-color fw-bolder">Descrizione : </span>
-                    {{ $professional->performance ?: 'Nessuna descrizione inserita' }}</li>
-                <li>
-                    <span class="title-secondary-color fw-bolder">Specializzazioni : </span>
-                    <ul>
-                        @foreach ($professional->specializations as $specialization)
-                            <li>{{ $specialization->name }}</li>
-                        @endforeach
+                        <li class="list-group-item"><span class="title-secondary-color fw-bolder">Numero telefono: </span>
+                            {{ $professional->phone ?: 'Nessun numero di telefono inserito' }}</li>
+                        <li class="list-group-item"><span class="title-secondary-color fw-bolder">Indirizzo : </span>
+                            {{ $professional->address ?: 'Nessun indirizzio inserito' }}</li>
+                        <li class="list-group-item"><span class="title-secondary-color fw-bolder">Descrizione : </span>
+                            {{ $professional->performance ?: 'Nessuna descrizione inserita' }}</li>
+                        <li class="list-group-item">
+                            <span class="title-secondary-color fw-bolder">Specializzazioni : </span>
+                            <ul>
+                                @foreach ($professional->specializations as $specialization)
+                                    <li>{{ $specialization->name }}</li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        <li class="list-group-item"><span class="title-secondary-color fw-bolder">Descrizione : </span>
+                            {{ $professional->performance ?: 'Nessuna descrizione inserita' }}</li>
                     </ul>
-                </li>
-                <li><span class="title-secondary-color fw-bolder">Descrizione : </span>
-                    {{ $professional->performance ?: 'Nessuna descrizione inserita' }}</li>
-
-            </ul>
-
-            <a class="btn btn-color text-light" href="{{ route('admin.info.edit', $user) }}">Modifica</a>
-        </div> --}}
-        <div class="card mb-4" style="width: 18rem;">
-            @if (isset($professional->photo) && Storage::exists($professional->photo))
-                <img src="{{ asset('storage/' . $professional->photo) }}" alt="foto profilo assente"
-                    class="card-img-top user-img">
-            @elseif(isset($professional->photo))
-                <img src="{{ $professional->photo }}" alt="foto profilo assente" class="card-img-top user-img">
-            @else
-                <img src="https://static.vecteezy.com/ti/vettori-gratis/p3/26530210-moderno-persona-icona-utente-e-anonimo-icona-vettore-vettoriale.jpg"
-                    alt="foto profilo assente" class="card-img-top user-img">
-            @endif
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"><span class="title-secondary-color fw-bolder">Nome : </span>{{ $user->name }}
-                </li>
-                <li class="list-group-item"><span class="title-secondary-color fw-bolder">Cognome : </span>
-                    {{ $user->surname }}</li>
-                <li class="list-group-item"><span class="title-secondary-color fw-bolder">Email : </span>
-                    {{ $user->email }}</li>
-                <li class="list-group-item">
-                    @if (isset($professional->curriculum))
-                        <a class="title-secondary-color fw-bolder" target="_blank"
-                            href="{{ asset('storage/' . $professional->curriculum) }}">Curriculum vitae</a>
+                    <div class="card-body">
+                        <a class="btn btn-color text-light" href="{{ route('admin.info.edit', $user) }}">Modifica</a>
+                    </div>
+            </div>
+            <div class="col-lg-6 none-fot-right-chart">
+                <div  style="width: 18rem;">
+                    @if (isset($professional->photo) && Storage::exists($professional->photo))
+                        <img src="{{ asset('storage/' . $professional->photo) }}" alt="foto profilo assente"
+                            class="card-img-top user-img rounded">
+                    @elseif(isset($professional->photo))
+                        <img src="{{ $professional->photo }}" alt="foto profilo assente" class="card-img-top user-img rounded">
                     @else
-                        <span class="title-secondary-color fw-bolder">Curriculum: </span>assente
+                        <img src="https://static.vecteezy.com/ti/vettori-gratis/p3/26530210-moderno-persona-icona-utente-e-anonimo-icona-vettore-vettoriale.jpg"
+                            alt="foto profilo assente" class="card-img-top user-img rounded">
                     @endif
-
-                </li>
-
-                <li class="list-group-item"><span class="title-secondary-color fw-bolder">Numero telefono: </span>
-                    {{ $professional->phone ?: 'Nessun numero di telefono inserito' }}</li>
-                <li class="list-group-item"><span class="title-secondary-color fw-bolder">Indirizzo : </span>
-                    {{ $professional->address ?: 'Nessun indirizzio inserito' }}</li>
-                <li class="list-group-item"><span class="title-secondary-color fw-bolder">Descrizione : </span>
-                    {{ $professional->performance ?: 'Nessuna descrizione inserita' }}</li>
-                <li class="list-group-item">
-                    <span class="title-secondary-color fw-bolder">Specializzazioni : </span>
-                    <ul>
-                        @foreach ($professional->specializations as $specialization)
-                            <li>{{ $specialization->name }}</li>
-                        @endforeach
-                    </ul>
-                </li>
-                <li class="list-group-item"><span class="title-secondary-color fw-bolder">Descrizione : </span>
-                    {{ $professional->performance ?: 'Nessuna descrizione inserita' }}</li>
-            </ul>
-            <div class="card-body">
-                <a class="btn btn-color text-light" href="{{ route('admin.info.edit', $user) }}">Modifica</a>
+                </div>
+            
+                <div class="right mt-4 ">
+                    
+                         <h4 class="titoto-chart">Statistiche interazioni con i clienti</h4>
+                        <div class="orizontal-chart text-center">
+                        <canvas   canvas id="myChart"></canvas>
+                        </div>
+                   
+                   
+                </div>
             </div>
+       
         </div>
-        <div class="right col-6 ps-5">
-            <div>
-                <canvas id="myChart"></canvas>
-            </div>
-        </div>
-        <div class="bottom col-12">
-            <div>
+            
+        <div class="bottom  no-img-bottom-chart">
+            <div class="text-center">
+                <h4 class="titoto-chart">Statistiche interazioni con i clienti</h4>
+            <div class="">
                 <canvas id="myChartHorizontal"></canvas>
             </div>
+            </div>
+           
         </div>
 
     </div>
+
+    
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -196,6 +178,7 @@
             data,
             options: {
                 scales: {
+                    
                     y: {
                         beginAtZero: true,
                         ticks: {
@@ -203,8 +186,11 @@
                         },
                         max: {{ $maxHeight + 1 }}
                     }
-                }
-            }
+                },
+                // responsive: false,
+                // maintainAspectRatio:true
+            },
+
         });
     </script>
 

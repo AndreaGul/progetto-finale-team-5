@@ -65,3 +65,50 @@ body {
 .title-bold {
     font-weight: 600;
 }
+
+//area personale
+// .orizontal-chart #myChart {
+//     min-height: 150px;
+//     min-width: 300px;
+// }
+
+.none-fot-right-chart {
+    display: none;
+}
+
+.ag-list-container {
+    width: 30rem;
+}
+
+.titoto-chart {
+    font-weight: 600;
+    color: #1f7a8c;
+}
+
+@media (min-width: 992px) {
+    .no-img {
+        display: none;
+    }
+    .orizontal-chart #myChart {
+        min-height: 230px;
+        min-width: 460px;
+    }
+    .none-fot-right-chart {
+        display: block;
+    }
+    .no-img-bottom-chart {
+        display: none;
+    }
+    .ag-list-container {
+        width: 18rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .orizontal-chart #myChart {
+        min-height: 300px;
+        min-width: 600px;
+    }
+    // .none-fot-stat {
+    // }
+}
