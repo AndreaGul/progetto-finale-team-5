@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="container d-flex align-items-end flex-wrap">
+    <div class="container d-flex align-items-start flex-wrap">
         <h1 class="title-color mt-3 col-12 title-bold">Informazioni personali</h1>
         {{-- <div class="left col-4">
             <ul class="list-unstyled">
@@ -98,7 +98,7 @@
                 <a class="btn btn-color text-light" href="{{ route('admin.info.edit', $user) }}">Modifica</a>
             </div>
         </div>
-        <div class="right col-6">
+        <div class="right col-6 ps-5">
             <div>
                 <canvas id="myChart"></canvas>
             </div>
