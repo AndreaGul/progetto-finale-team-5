@@ -17,9 +17,10 @@ return new class extends Migration
 
             $table->unsignedBigInteger('sponsorization_id');
             $table->foreign('sponsorization_id')->references('id')->on('sponsorizations')->cascadeOnDelete();
-
-            $table->primary(['professional_id', 'sponsorization_id']);
+            
             $table->dateTime('date_end_sponsorization');
+            $table->primary(['professional_id', 'sponsorization_id','date_end_sponsorization']);
+            
 
             $table->timestamps();
         });
