@@ -103,6 +103,11 @@
                 <canvas id="myChart"></canvas>
             </div>
         </div>
+        <div class="bottom col-12">
+            <div>
+                <canvas id="myChartHorizontal"></canvas>
+            </div>
+        </div>
 
     </div>
 
@@ -126,9 +131,8 @@
         });
         const orderMonths = lastYearMonths.concat(thisYearMonths);
 
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
+
+        const data = {
                 labels: orderMonths,
                 datasets: [{
                         label: 'messaggi',
@@ -185,7 +189,11 @@
                         borderWidth: 1
                     }
                 ]
-            },
+            };
+
+        new Chart(ctx, {
+            type: 'bar',
+            data,
             options: {
                 scales: {
                     y: {
@@ -198,5 +206,27 @@
                 }
             }
         });
+    </script>
+
+    <script>
+    const ctx2 = document.getElementById('myChartHorizontal');
+        const horizontal = new Chart(ctx2, {
+            type: 'bar',
+            data,
+            options: {
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        fontSize: 40,
+                        ticks: {
+                            stepSize: 1,
+                        },
+                        max: {{ $maxHeight + 1 }}
+                    },
+                }
+            }
+        });
+        //horizontal.resize(600, 600);
     </script>
 @endsection
