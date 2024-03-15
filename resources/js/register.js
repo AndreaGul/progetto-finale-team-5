@@ -6,6 +6,7 @@ const errorText = document.getElementById("error-text");
 const submit = document.getElementById("submit");
 
 const checkboxes = document.getElementsByName("specializations[]");
+console.log(checkboxes);
 const errorSpecializations = document.getElementById("error-specializations");
 
 let isChecked = false;
