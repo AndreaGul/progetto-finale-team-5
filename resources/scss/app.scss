@@ -36,7 +36,6 @@ body {
     width: 100px;
 }
 
-
 //navbar - sidebar color
 .navbar,
 .bg-sidebar {
@@ -63,7 +62,6 @@ body {
 .title-bold {
     font-weight: 600;
 }
-
 
 //area personale
 // .orizontal-chart #myChart {
@@ -102,8 +100,8 @@ body {
     .navbar-zindex {
         z-index: 99;
     }
-
- //responsive pagina info
+}
+//responsive pagina info
 @media (min-width: 992px) {
     .no-img {
         display: none;
@@ -128,7 +126,4 @@ body {
         min-height: 300px;
         min-width: 600px;
     }
-  
-
-
 }
