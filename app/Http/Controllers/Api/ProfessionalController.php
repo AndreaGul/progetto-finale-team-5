@@ -178,7 +178,9 @@ class ProfessionalController extends Controller
         } else {
             $param = 'slug';
         }
-        $professional = Professional::where($param, $id)->with('messages', 'reviews', 'votes', 'user', 'specializations')->withCount(['votes as average_rating' => function ($query) {
+        $professional = Professional::where($param, $id)->with(['reviews' => function ($query) {
+            $query->orderBy('created_at', 'desc');
+        }])->with('messages', 'votes', 'user', 'specializations')->withCount(['votes as average_rating' => function ($query) {
             $query->select(DB::raw('coalesce(avg(lookup_id), 0)'));
         }])->withCount('votes')->first();
         if ($professional) {
