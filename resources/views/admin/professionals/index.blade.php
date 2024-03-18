@@ -172,28 +172,6 @@
                     }
                 ]
             };
-
-        new Chart(ctx, {
-            type: 'bar',
-            data,
-            options: {
-                scales: {
-                    
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 1
-                        },
-                        max: {{ $maxHeight + 1 }}
-                    }
-                },
-                // responsive: false,
-                // maintainAspectRatio:true
-                
-              
-            },
-
-        });
     </script>
 
     <script>
@@ -229,6 +207,25 @@
             labels: orderMonths.reverse(),
             datasets: newDatasets
         }
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: dataHorizontal,
+            options: {
+                scales: {
+                    
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        },
+                        max: {{ $maxHeight + 1 }}
+                    }
+                },
+              
+            },
+
+        });
 
         const ctx2 = document.getElementById('myChartHorizontal');
         const horizontal = new Chart(ctx2, {
