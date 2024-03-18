@@ -91,6 +91,10 @@ body {
     height: 400px;
 }
 
+.btn:hover {
+    background-color: #1f7a8c;
+    color: white;
+}
 // dimensioni spazzi presi dal titolo e il logout nell navbar
 @media (min-width: 576px) {
     .default-witdh {
