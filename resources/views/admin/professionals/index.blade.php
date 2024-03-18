@@ -79,7 +79,7 @@
        
         </div>
             
-        <div class="bottom  no-img-bottom-chart">
+        <div class="bottom  no-img-bottom-chart chart-container">
             <div class="text-center">
                 <h4 class="titoto-chart">Statistiche interazioni con i clienti</h4>
             <div class="">
@@ -189,6 +189,8 @@
                 },
                 // responsive: false,
                 // maintainAspectRatio:true
+                
+              
             },
 
         });
@@ -243,9 +245,12 @@
                         },
                         max: {{ $maxHeight + 1 }}
                     },
-                }
+                },
+                aspectRatio: 1,
+                 barPercentage: 1,
             }
         });
         //horizontal.resize(600, 600);
+        
     </script>
 @endsection
