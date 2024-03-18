@@ -49,7 +49,7 @@
 
 
             <div class="col-12">
-                <label for="phone" class="form-label">Telefono <span class="text-danger">*</span></label>
+                <label for="phone" class="form-label">Telefono</label>
                 <input type="text" class="form-control" id="telefono" name="phone"
                     value="{{ old('phone', $user->professional->phone) }}">
                 <p class="d-none text-danger" id='errore-telefono'></p>
