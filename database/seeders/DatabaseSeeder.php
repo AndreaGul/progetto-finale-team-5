@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         // User::truncate();
         // Professional::truncate();
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $user = new User();
             $user->name = $faker->firstNameMale();
             $user->surname = $faker->lastName();
@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
             $professional->specializations()->sync($nuovo);
         }
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $user = new User();
             $user->name = $faker->firstNameFemale();
             $user->surname = $faker->lastName();
@@ -65,6 +65,7 @@ class DatabaseSeeder extends Seeder
             $professional->slug = $user->name . '-' . $user->surname;
             // $professional->curriculum = ;
             $professional->photo =  'https://randomuser.me/api/portraits/women/' . $i . '.jpg';
+            $professional->phone = $faker->phoneNumber();
             $professional->performance = $faker->sentence();
             $professional->address = $faker->address();
             $professional->user_id = $user->id;
