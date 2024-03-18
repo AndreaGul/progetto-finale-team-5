@@ -15,6 +15,11 @@ body {
 //colore dei link sull'header
 .nav-link {
     color: #1f7a8c;
+    font-weight: 600;
+}
+.nav-logout {
+    color: white;
+    text-decoration: none;
 }
 
 .nav-link:hover {
