@@ -24,6 +24,7 @@
                 </p>
             </div>
         @else
+
             <div class="alert alert-info col-12 col-md-8 text-center mt-5" role="alert">
                 <h1>Sponsorizza il tuo profilo</h1>
                 <p>scegli uno dei seguenti piani</p>
@@ -37,7 +38,7 @@
                             {{ $sponsorization->hours }} ore, al costo di {{ $sponsorization->price }} €
                         </label><br>
                     @endforeach
-                    <button type="submit" class="btn btn-color col-12 mt-2">vai al pagamento</button>
+                    <button type="submit" class="btn btn-color col-12 mt-2">Vai al pagamento</button>
                 </form>
             </div>
 

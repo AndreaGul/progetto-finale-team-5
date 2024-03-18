@@ -19,6 +19,9 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <!-- Logo Browser -->
+    <link rel="icon" type="image/png" href="{{ asset('BOOLTECHSBROWSER.png') }}">
+
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 </head>
@@ -27,17 +30,18 @@
     <div id="app">
 
         <header class="navbar navbar-dark sticky-top flex-md-nowrap p-2 shadow">
-            <div  class="default-witdh">
-                <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3   show-home" href="{{ env('FRONTEND') }}">Torna alla home</a>
+            <div class="default-witdh">
+                <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3   show-home" href="{{ env('FRONTEND') }}">Torna alla
+                    home</a>
                 <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3  hide-home" href="{{ env('FRONTEND') }}">Home</a>
-                
+
             </div>
-            <button class="navbar-toggler  d-md-none collapsed text-center" type="button"
-                    data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            <div class="navbar-nav default-witdh text-end px-3" >
+            <button class="navbar-toggler  d-md-none collapsed text-center" type="button" data-bs-toggle="collapse"
+                data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-nav default-witdh text-end px-3">
                 <div class="nav-item text-nowrap ms-2">
                     <a class="nav-link" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
