@@ -14,6 +14,8 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Logo Browser -->
     <link rel="icon" type="image/png" href="{{ asset('BOOLTECHSBROWSER.png') }}">
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])

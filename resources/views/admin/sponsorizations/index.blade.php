@@ -24,7 +24,7 @@
         @else
         <div class="alert alert-info col-12 col-md-6 text-center mt-5" role="alert">
             <h1>Sponsorizza il tuo profilo</h1>
-            <p>scegli uno dei seguenti piani</p>
+            <p>Scegli uno dei seguenti piani</p>
             <form id="payment-form" action="{{ route('admin.prova') }}" method="get" class="col-8 col-md-12 col-lg-8 col-xl-6 col-xxl-4 text-start m-auto">
                 @csrf
                 @foreach ($sponsorizations as $key => $sponsorization)
@@ -34,7 +34,7 @@
                         {{ $sponsorization->hours }} ore, al costo di {{ $sponsorization->price }} €
                     </label><br>
                 @endforeach
-                <button type="submit" class="btn btn-primary col-12 mt-2">vai al pagamento</button>
+                <button type="submit" class="btn btn-primary col-12 mt-2">Vai al pagamento</button>
             </form>
          </div>
 
