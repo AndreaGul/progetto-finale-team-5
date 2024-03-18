@@ -29,7 +29,7 @@
             <p class="d-none text-danger" id='errore-nome'></p>
             </span>
             <div class="col-12">
-                <label for="surname" class="form-label">Cognome <span class="text-danger">*</span></label>
+                <label for="surname" class="form-label mt-4">Cognome <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="cognome" name="surname"
                     value="{{ old('surname', $user->surname) }}" required>
                 <p class="d-none text-danger" id='errore-cognome'></p>
@@ -49,14 +49,14 @@
 
 
             <div class="col-12">
-                <label for="phone" class="form-label">Telefono</label>
+                <label for="phone" class="form-label">Telefono <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="telefono" name="phone"
                     value="{{ old('phone', $user->professional->phone) }}">
                 <p class="d-none text-danger" id='errore-telefono'></p>
             </div>
 
             <div class="col-12">
-                <label for="address" class="form-label">Indirizzo</label>
+                <label for="address" class="form-label mt-4">Indirizzo <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="indirizzo" name="address"
                     value="{{ old('address', $user->professional->address) }}">
                 <p class="d-none text-danger" id='errore-indirizzo'></p>
@@ -64,7 +64,7 @@
 
 
             <div class="col-12">
-                <label for="address" class="form-label">Descrizione</label>
+                <label for="address" class="form-label mt-4">Descrizione</label>
                 <div class="form-floating">
                     <textarea name="performance" id="descrizione" cols="30" rows="10" class="form-control p-1"
                         placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px">{{ old('address', $user->professional->performance) }}</textarea>
@@ -74,7 +74,8 @@
 
             <div class="col-12">
                 <div>
-                    <label for="specializations" class="form-label">Specializzazioni:</label>
+                    <label for="specializations" class="form-label mt-4">Specializzazioni: <span
+                            class="text-danger">*</span></label>
                 </div>
                 @foreach ($specializations as $specialization)
                     <div class="form-check form-check-inline">
