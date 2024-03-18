@@ -165,6 +165,33 @@
                 bottom: -40px;
             }
         }
+
+        @media ((min-width: 768px) and (max-width: 991px)) {
+            .background {
+                transform: translate(-50%, -45%);
+                z-index: 0;
+            }
+
+            form {
+                width: 300px;
+                transform: translate(-50%, -45%);
+            }
+
+            .background .shape {
+                height: 100px;
+                width: 100px;
+            }
+
+            .shape:first-child {
+                left: 20px;
+                top: -40px;
+            }
+
+            .shape:last-child {
+                right: 20px;
+                bottom: -40px;
+            }
+        }
     </style>
 
 
