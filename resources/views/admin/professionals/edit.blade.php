@@ -96,7 +96,7 @@
             </div>
 
 
-            <button type="submit" id="submit" class="btn btn-color col-1">Salva</button>
+            <button type="submit" id="submit" class="btn btn-color">Salva</button>
             <p class="mt-3"><span class="text-danger">*</span> Campi obbligatori</p>
         </div>
     </form>
