@@ -37,7 +37,7 @@
                             {{ $sponsorization->hours }} ore, al costo di {{ $sponsorization->price }} €
                         </label><br>
                     @endforeach
-                    <button type="submit" class="btn btn-color col-12 mt-2">vai al pagamento</button>
+                    <button type="submit" class="btn btn-color col-12 mt-2">Vai al pagamento</button>
                 </form>
             </div>
 
