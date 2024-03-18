@@ -43,7 +43,7 @@
             </button>
             <div class="navbar-nav default-witdh text-end px-3">
                 <div class="nav-item text-nowrap ms-2">
-                    <a class="nav-link" href="{{ route('logout') }}"
+                    <a class=" nav-logout" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
                         {{ __('Logout') }}

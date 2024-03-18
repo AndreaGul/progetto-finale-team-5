@@ -14,7 +14,7 @@ class UserSponsoredSeeder extends Seeder
      */
     public function run(): void
     {
-        $professionals = Professional::inRandomOrder()->take(5)->get();
+        $professionals = Professional::inRandomOrder()->take(10)->get();
         $sponsorizations = Sponsorization::all();
 
         foreach ($professionals as $professional) {
