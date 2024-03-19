@@ -76,7 +76,7 @@ class DatabaseSeeder extends Seeder
             // $professional->curriculum = ;
             $professional->photo =  'https://randomuser.me/api/portraits/women/' . $i . '.jpg';
             $professional->phone = $faker->phoneNumber();
-            $professional->performance = $faker->sentence();
+            $professional->performance = collect($prof_performance)->random();
             $professional->address = $faker->address();
             $professional->user_id = $user->id;
 
